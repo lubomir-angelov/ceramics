@@ -3,11 +3,13 @@ from sqlalchemy import Boolean, CHAR, Column, Enum, ForeignKey, Integer, LargeBi
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
+from app import db
+
 Base = declarative_base()
 metadata = Base.metadata
 
 
-class Tbllayer(Base):
+class Tbllayer(db.Model):
     __tablename__ = 'tbllayers'
 
     layerid = Column(Integer, primary_key=True, server_default=text("nextval('tbllayers_layerid_seq'::regclass)"))
@@ -35,6 +37,14 @@ class Tbllayer(Base):
     recordcreatedon = Column(String(50))
     description = Column(Text)
     akb_num = Column(Integer)
+
+    # based on the assumption the relationship is one-to-many
+    # if one-to-one change is needed in the declaration
+    # TODO: fix replationships
+    #tblfragments = relationship('Tblfragment', back_populates='tbllayers')
+    #tbllayerincludes = relationship('Tbllayerinclude', back_populates='tbllayers')
+    #tblornaments = relationship('Tblornament', back_populates='tbllayers')
+    #tblpoks = relationship('Tblpok', back_populates='tbllayers')
 
 
 class Tblfragment(Base):
@@ -82,7 +92,9 @@ class Tblfragment(Base):
     recordenteredby = Column(Text)
     recordenteredon = Column(String(50))
 
-    tbllayer = relationship('Tbllayer')
+    # TODO: fix replationships
+    #tbllayer = relationship('Tbllayer', back_populates='tblfragments')
+    #tblornaments = relationship('Tblornament', back_populates='tblfragment')
 
 
 class Tbllayerinclude(Base):
@@ -95,7 +107,8 @@ class Tbllayerinclude(Base):
     includesize = Column(Text)
     includeconc = Column(Text)
 
-    tbllayer = relationship('Tbllayer')
+    # TODO: fix replationships
+    #tbllayer = relationship('Tbllayer', back_populates='tbllayerincludes')
 
 
 class Tblpok(Base):
@@ -107,7 +120,8 @@ class Tblpok(Base):
     quantity = Column(Integer)
     weight = Column(Numeric(6, 3))
 
-    tbllayer = relationship('Tbllayer')
+    # TODO: fix replationships
+    #tbllayer = relationship('Tbllayer', back_populates='tblpoks')
 
 
 class Tblornament(Base):
@@ -127,4 +141,5 @@ class Tblornament(Base):
     tertiary = Column(String(10))
     quarternary = Column(String(10))
 
-    tblfragment = relationship('Tblfragment')
+    # TODO: fix replationships
+    #tblfragment = relationship('Tblfragment', back_populates='tblfragments')

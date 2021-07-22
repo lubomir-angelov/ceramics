@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, flash
 from flask_sqlalchemy import SQLAlchemy
 
+import models
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ceramics:<some_password>@localhost/GK_Pottery'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -25,22 +27,22 @@ def load_tbl_layers():
 
 
 @app.route("/load_tbl_layer_includes")
-def load_tbl_layers():
+def load_tbl_layer_includes():
     return render_template("tbl_layer_includes.html")
 
 
 @app.route("/load_tbl_fragments")
-def load_tbl_layers():
+def load_tbl_fragments():
     return render_template("tbl_fragments.html")
 
 
 @app.route("/load_tbl_ornaments")
-def load_tbl_layers():
+def load_tbl_ornaments():
     return render_template("tbl_ornaments.html")
 
 
 @app.route("/load_tbl_pok")
-def load_tbl_layers():
+def load_tbl_pok():
     return render_template("tbl_pok.html")
 
 
