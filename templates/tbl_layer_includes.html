@@ -9,10 +9,16 @@
 <form action="{{ url_for('load_layer_includes')}}" method="post">
     <h5>Enter the data for tbl_layer_includes</h5>
     <div>
-        <input type="text" name="pname" placeholder="pname">
+        <input type="text" name="includetype" placeholder="includetype">
     </div>
     <div>
-        <input type="text" name="color" placeholder="color">
+        <input type="text" name="includetext" placeholder="includetext">
+    </div>
+    <div>
+        <input type="text" name="includesize" placeholder="includesize">
+    </div>
+    <div>
+        <input type="text" name="includeconc" placeholder="includeconc">
     </div>
     <div>
         <button >Submit</button>

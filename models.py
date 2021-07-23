@@ -250,11 +250,7 @@ class Tblfragment(Base):
             'composition': self.composition,
             'parallels': self.parallels,
             'recordenteredby': self.recordenteredby,
-            'recordenteredon': self.recordenteredon,
-
-
-
-
+            'recordenteredon': self.recordenteredon
         }
 
 
