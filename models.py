@@ -190,6 +190,8 @@ class Tblfragment(Base):
         self.parallels = parallels
         self.recordenteredby = recordenteredby
 
+        # some comment
+
     def __repr__(self):
         return '<fragmentid {}>'.format(self.fragmentid)
 
