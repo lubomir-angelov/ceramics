@@ -44,8 +44,6 @@ class Tbllayer(db.Model):
     #tblornaments = relationship('Tblornament', back_populates='tbllayers')
     #tblpoks = relationship('Tblpok', back_populates='tbllayers')
 
-    # TODO: change all vars to columns needed for input
-    # Note: do not include photos and drawings
     def __init__(self, layertype, layername, site, sector, square, context, layer, stratum, level,
                  structure, includes, color1, color2, handfragments, wheelfragment, recordenteredby,
                  recordcreatedby, recordcreatedon, description, akb_num):
@@ -70,14 +68,9 @@ class Tbllayer(db.Model):
         self.description = description
         self.akb_num = akb_num
 
-
-    # TODO: change all vars to columns needed for input
-    # Note: do not include photos and drawings
     def __repr__(self):
         return '<layerid {}>'.format(self.layerid)
 
-    # TODO: change all vars to columns needed for input
-    # Note: do not include photos and drawings
     def serialize(self):
         return {
             'layerid': self.id,
@@ -278,7 +271,6 @@ class Tbllayerinclude(Base):
             'includeconc': self.includeconc
         }
 
-
 class Tblpok(Base):
     __tablename__ = 'tblpok'
 
@@ -287,7 +279,6 @@ class Tblpok(Base):
     type = Column(Text)
     quantity = Column(Integer)
     weight = Column(Numeric(6, 3))
-
 
     tbllayer = relationship('Tbllayer')
     # TODO: fix replationships
