@@ -129,7 +129,7 @@ class Tblfragment(Base):
     onepot = Column(Boolean)
     piecetype = Column(Enum('устие', 'стена', 'дръжка', 'дъно', 'профил', 'чучур', 'дъно+дръжка', 'профил+дръжка', 'устие+дръжка', 'стена+дръжка', 'псевдочучур', 'плавен прелом', 'биконичност', 'двоен съд', 'цял съд', name='piecetype_type'), nullable=False)
     wallthickness = Column(Enum('М', 'С', 'Г', name='wallthickness_type'))
-    handlesize = Column(String(50))
+    handlesize = Column(Enum('М', 'С', 'Г', name='handlesize_type'))
     handletype = Column(String(5))
     dishsize = Column(Enum('М', 'С', 'Г', name='dishsize_type'))
     topsize = Column(Numeric(5, 2))
