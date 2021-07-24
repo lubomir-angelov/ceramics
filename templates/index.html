@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Choose a table to load into</title>
 </head>
 <body>
-
+<a href="{{ url_for('load_tbl_layers') }}">Layers</a>
+<a href="{{ url_for('load_tbl_layer_includes') }}">Layer Includes</a>
+<a href="{{ url_for('load_tbl_fragments') }}">Fragments</a>
+<a href="{{ url_for('load_tbl_ornaments') }}">Ornaments</a>
+<a href="{{ url_for('load_tbl_pok') }}">POK</a>
 </body>
 </html>

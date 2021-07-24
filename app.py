@@ -12,13 +12,7 @@ db = SQLAlchemy(app)
 
 @app.route('/')
 def home():
-    return (
-            '<a href="/tbl_layers"><button> Load into tbl_layers </button></a>',
-            '<a href="/tbl_layer_includes"><button> Load into tbl_layer_includes </button></a>',
-            '<a href="/tbl_fragments"><button> Load into tbl_fragments </button></a>',
-            '<a href="/tbl_ornaments"><button> Load into tbl_ornaments </button></a>',
-            '<a href="/tbl_pok"><button> Load into tbl_pok </button></a>'
-    )
+    return render_template('index.html')
 
 
 @app.route("/load_tbl_layers")

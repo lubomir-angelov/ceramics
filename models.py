@@ -38,8 +38,6 @@ class Tbllayer(db.Model):
     description = Column(Text)
     akb_num = Column(Integer)
 
-    # based on the assumption the relationship is one-to-many
-    # if one-to-one change is needed in the declaration
     # TODO: fix replationships
     #tblfragments = relationship('Tblfragment', back_populates='tbllayers')
     #tbllayerincludes = relationship('Tbllayerinclude', back_populates='tbllayers')
@@ -153,12 +151,11 @@ class Tblfragment(Base):
     recordenteredby = Column(Text)
     recordenteredon = Column(String(50), server_default=text("CURRENT_TIMESTAMP"))
 
+    tbllayer = relationship('Tbllayer')
     # TODO: fix replationships
     #tbllayer = relationship('Tbllayer', back_populates='tblfragments')
     #tblornaments = relationship('Tblornament', back_populates='tblfragment')
 
-    # TODO: change all vars to columns needed for input
-    # Note: do not include photos and drawings
     def __init__(self, technology, speed, baking, fract, primarycolor, secondarycolor, covering, includesconc, includessize,
                  includestype, surface, count, onepot, piecetype, wallthickness, handlesize, handletype, dishsize, topsize,
                  necksize, bodysize, bottomsize, dishheight, bottomtype, outline, category, form, type, subtype, variant,
@@ -200,16 +197,9 @@ class Tblfragment(Base):
         self.parallels = parallels
         self.recordenteredby = recordenteredby
 
-
-
-
-    # TODO: change all vars to columns needed for input
-    # Note: do not include photos and drawings
     def __repr__(self):
         return '<fragmentid {}>'.format(self.fragmentid)
 
-    # TODO: change all vars to columns needed for input
-    # Note: do not include photos and drawings
     def serialize(self):
         return {
             'fragmentid': self.fragmentid,
@@ -265,24 +255,19 @@ class Tbllayerinclude(Base):
     includesize = Column(Enum('малки', 'средни', 'големи', name='includesize_type'))
     includeconc = Column(Text)
 
+    tbllayer = relationship('Tbllayer')
     # TODO: fix replationships
     #tbllayer = relationship('Tbllayer', back_populates='tbllayerincludes')
 
-    # TODO: change all vars to columns needed for input
-    # Note: do not include photos and drawings
     def __init__(self, includetype, includetext, includesize, includeconc):
         self.includetype = includetype
         self.includetext = includetext
         self.includesize = includesize
         self.includeconc = includeconc
 
-    # TODO: change all vars to columns needed for input
-    # Note: do not include photos and drawings
     def __repr__(self):
         return '<includeid {}>'.format(self.includeid)
 
-    # TODO: change all vars to columns needed for input
-    # Note: do not include photos and drawings
     def serialize(self):
         return {
             'includeid': self.includeid,
@@ -303,23 +288,19 @@ class Tblpok(Base):
     quantity = Column(Integer)
     weight = Column(Numeric(6, 3))
 
+
+    tbllayer = relationship('Tbllayer')
     # TODO: fix replationships
     #tbllayer = relationship('Tbllayer', back_populates='tblpoks')
 
-    # TODO: change all vars to columns needed for input
-    # Note: do not include photos and drawings
     def __init__(self, type, quantity, weight):
         self.type = type
         self.quantity = quantity
         self.weight = weight
 
-    # TODO: change all vars to columns needed for input
-    # Note: do not include photos and drawings
     def __repr__(self):
         return '<pokid {}>'.format(self.pokid)
 
-    # TODO: change all vars to columns needed for input
-    # Note: do not include photos and drawings
     def serialize(self):
         return {
             'pokid': self.pokid,
@@ -347,11 +328,10 @@ class Tblornament(Base):
     tertiary = Column(String(1))
     quarternary = Column(String(10))
 
+    #tbllayer = relationship('Tblfragment')
     # TODO: fix replationships
     #tblfragment = relationship('Tblfragment', back_populates='tblfragments')
 
-    # TODO: change all vars to columns needed for input
-    # Note: do not include photos and drawings
     def __init__(self, location, relationship, onornament, color1, color2, encrustcolor1, encrustcolor2, primary_, secondary,
                  tertiary, quarternary):
         self.location = location
@@ -366,13 +346,9 @@ class Tblornament(Base):
         self.tertiary = tertiary
         self.quarternary = quarternary
 
-    # TODO: change all vars to columns needed for input
-    # Note: do not include photos and drawings
     def __repr__(self):
         return '<ornamentid {}>'.format(self.ornamentid)
 
-    # TODO: change all vars to columns needed for input
-    # Note: do not include photos and drawings
     def serialize(self):
         return {
             'ornamentid': self.ornamentid,
