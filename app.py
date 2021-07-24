@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 import models
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ceramics:<some_password>@localhost/GK_Pottery'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ceramics:DYC42S3BVZjyrylfcCD0@localhost/GK_Pottery'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.secret_key = 'secret string'
 
@@ -13,11 +13,11 @@ db = SQLAlchemy(app)
 @app.route('/')
 def home():
     return (
-            '<a href="/addperson"><button> Load into tbl_layers </button></a>',
-            '<a href="/addperson"><button> Load into tbl_layer_includes </button></a>',
-            '<a href="/addperson"><button> Load into tbl_fragments </button></a>',
-            '<a href="/addperson"><button> Load into tbl_ornaments </button></a>',
-            '<a href="/addperson"><button> Load into tbl_pok </button></a>'
+            '<a href="/tbl_layers"><button> Load into tbl_layers </button></a>',
+            '<a href="/tbl_layer_includes"><button> Load into tbl_layer_includes </button></a>',
+            '<a href="/tbl_fragments"><button> Load into tbl_fragments </button></a>',
+            '<a href="/tbl_ornaments"><button> Load into tbl_ornaments </button></a>',
+            '<a href="/tbl_pok"><button> Load into tbl_pok </button></a>'
     )
 
 
@@ -48,9 +48,29 @@ def load_tbl_pok():
 
 @app.route("/load_layers", methods=['POST'])
 def load_layers():
-    pname = request.form["pname"]
-    color = request.form["color"]
-    entry = People(pname, color)
+    layertype = request.form["layertype"]
+    layername = request.form["layername"]
+    site = request.form["site"]
+    sector = request.form["sector"]
+    square = request.form["square"]
+    context = request.form["context"]
+    layer = request.form["layer"]
+    stratum = request.form["stratum"]
+    level = request.form["level"]
+    structure = request.form["structure"]
+    includes = request.form["includes"]
+    color1 = request.form["color1"]
+    color2 = request.form["color2"]
+    handfragments = request.form["handfragments"]
+    wheelfragment = request.form["wheelfragment"]
+    recordenteredby = request.form["recordenteredby"]
+    recordcreatedby = request.form["recordcreatedby"]
+    recordcreatedon = request.form["recordcreatedon"]
+    description = request.form["description"]
+    akb_num = request.form["akb_num"]
+    entry = models.Tbllayer(layertype, layername, site, sector, square, context, layer, stratum, level,
+                 structure, includes, color1, color2, handfragments, wheelfragment, recordenteredby,
+                     recordcreatedby, recordcreatedon, description, akb_num)
     db.session.add(entry)
     db.session.commit()
 
@@ -59,9 +79,11 @@ def load_layers():
 
 @app.route("/load_layer_includes", methods=['POST'])
 def load_layer_includes():
-    pname = request.form["pname"]
-    color = request.form["color"]
-    entry = People(pname, color)
+    includetype = request.form["includetype"]
+    includetext = request.form["includetext"]
+    includesize = request.form["includesize"]
+    includeconc = request.form["includeconc"]
+    entry = models.Tbllayerinclude(includetype, includetext, includesize, includeconc)
     db.session.add(entry)
     db.session.commit()
 
@@ -70,9 +92,46 @@ def load_layer_includes():
 
 @app.route("/load_fragments", methods=['POST'])
 def load_fragments():
-    pname = request.form["pname"]
-    color = request.form["color"]
-    entry = People(pname, color)
+    technology = request.form["technology"]
+    speed = request.form["speed"]
+    baking = request.form["baking"]
+    fract = request.form["fract"]
+    primarycolor = request.form["primarycolor"]
+    secondarycolor = request.form["secondarycolor"]
+    covering = request.form["covering"]
+    includesconc = request.form["includesconc"]
+    includessize = request.form["includessize"]
+    includestype = request.form["includestype"]
+    surface = request.form["surface"]
+    count = request.form["count"]
+    onepot = request.form["onepot"]
+    piecetype = request.form["piecetype"]
+    wallthickness = request.form["wallthickness"]
+    handlesize = request.form["handlesize"]
+    handletype = request.form["handletype"]
+    dishsize = request.form["dishsize"]
+    topsize = request.form["topsize"]
+    necksize = request.form["necksize"]
+    bodysize = request.form["bodysize"]
+    bottomsize = request.form["bottomsize"]
+    dishheight = request.form["dishheight"]
+    bottomtype = request.form["bottomtype"]
+    outline = request.form["outline"]
+    category = request.form["category"]
+    form = request.form["form"]
+    type = request.form["type"]
+    subtype = request.form["subtype"]
+    variant = request.form["variant"]
+    note= request.form["note"]
+    inventory = request.form["inventory"]
+    decoration = request.form["decoration"]
+    composition = request.form["composition"]
+    parallels = request.form["parallels"]
+    recordenteredby = request.form["recordenteredby"]
+    entry = models.Tblfragment(technology, speed, baking, fract, primarycolor, secondarycolor, covering, includesconc, includessize,
+                 includestype, surface, count, onepot, piecetype, wallthickness, handlesize, handletype, dishsize, topsize,
+                 necksize, bodysize, bottomsize, dishheight, bottomtype, outline, category, form, type, subtype, variant,
+                 note, inventory, decoration, composition, parallels, recordenteredby)
     db.session.add(entry)
     db.session.commit()
 
@@ -81,9 +140,19 @@ def load_fragments():
 
 @app.route("/load_ornaments", methods=['POST'])
 def load_ornaments():
-    pname = request.form["pname"]
-    color = request.form["color"]
-    entry = People(pname, color)
+    location = request.form["location"]
+    relationship = request.form["relationship"]
+    onornament = request.form["onornament"]
+    color1 = request.form["color1"]
+    color2 = request.form["color2"]
+    encrustcolor1 = request.form["encrustcolor1"]
+    encrustcolor2 = request.form["encrustcolor2"]
+    primary_ = request.form["primary_"]
+    secondary = request.form["secondary"]
+    tertiary = request.form["tertiary"]
+    quarternary = request.form["quarternary"]
+    entry = models.Tblornament(location, relationship, onornament, color1, color2, encrustcolor1, encrustcolor2, primary_, secondary,
+                 tertiary, quarternary)
     db.session.add(entry)
     db.session.commit()
 
@@ -92,9 +161,10 @@ def load_ornaments():
 
 @app.route("/load_pok", methods=['POST'])
 def load_pok():
-    pname = request.form["pname"]
-    color = request.form["color"]
-    entry = People(pname, color)
+    type = request.form["type"]
+    quantity = request.form["quantity"]
+    weight = request.form["weight"]
+    entry = models.Tblpok(type, quantity, weight)
     db.session.add(entry)
     db.session.commit()
 

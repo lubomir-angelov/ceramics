@@ -1,5 +1,5 @@
 # coding: utf-8
-from sqlalchemy import Boolean, CHAR, Column, Enum, ForeignKey, Integer, LargeBinary, Numeric, String, Text, text
+from sqlalchemy import Boolean, CHAR, Column, Enum, ForeignKey, Integer, LargeBinary, Numeric, String, Text, text, Date
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -25,16 +25,16 @@ class Tbllayer(db.Model):
     level = Column(Text)
     structure = Column(Text)
     includes = Column(Text)
-    color1 = Column(Text)
-    color2 = Column(Text)
+    color1 = Column(Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', name='color1_type'))
+    color2 = Column(Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', name='color2_type'))
     photos = Column(LargeBinary)
     drawings = Column(LargeBinary)
     handfragments = Column(Integer)
     wheelfragment = Column(Integer)
     recordenteredby = Column(Text)
-    recordenteredon = Column(String(50))
+    recordenteredon = Column(Date, nullable=False, server_default=text("CURRENT_TIMESTAMP"))
     recordcreatedby = Column(Text)
-    recordcreatedon = Column(String(50))
+    recordcreatedon = Column(Date)
     description = Column(Text)
     akb_num = Column(Integer)
 
@@ -49,8 +49,8 @@ class Tbllayer(db.Model):
     # TODO: change all vars to columns needed for input
     # Note: do not include photos and drawings
     def __init__(self, layertype, layername, site, sector, square, context, layer, stratum, level,
-                 structure, includes, color1, color2, handfragments, wheelfragment, recordenteredby
-                 , recordcreatedby, recordcreatedon, description, akb_num):
+                 structure, includes, color1, color2, handfragments, wheelfragment, recordenteredby,
+                 recordcreatedby, recordcreatedon, description, akb_num):
         self.layertype = layertype
         self.layername = layername
         self.site = site
@@ -59,6 +59,7 @@ class Tbllayer(db.Model):
         self.context = context
         self.layer = layer
         self.stratum = stratum
+        self.level = level
         self.structure = structure
         self.includes = includes
         self.color1 = color1
@@ -90,6 +91,7 @@ class Tbllayer(db.Model):
             'context': self.context,
             'layer': self.layer,
             'stratum': self.stratum,
+            'level': self.level,
             'parentid': self.parentid,
             'structure': self.structure,
             'includes': self.includes,
@@ -103,7 +105,6 @@ class Tbllayer(db.Model):
             'recordcreatedon': self.recordcreatedon,
             'description': self.description,
             'akb_num': self.akb_num,
-
         }
 
 
@@ -112,37 +113,37 @@ class Tblfragment(Base):
 
     fragmentid = Column(Integer, primary_key=True, server_default=text("nextval('tblfragments_fragmentid_seq'::regclass)"))
     locationid = Column(ForeignKey('tbllayers.layerid'))
-    fragmenttype = Column(String(50))
-    technology = Column(String(50))
-    speed = Column(Text)
-    baking = Column(CHAR(50))
-    fract = Column(String(50))
-    primarycolor = Column(String(50))
-    secondarycolor = Column(String(50))
+    fragmenttype = Column(Enum('1', '2', name='fragment_type'))
+    technology = Column(Enum('1', '2', '2А', '2Б', name='technology_'))
+    speed = Column(Enum('1', '2', name='speed_type'))
+    baking = Column(Enum('Р', 'Н', name='baking_type'))
+    fract = Column(Enum('1', '2', '3', name='fract_type'))
+    primarycolor = Column(Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', name='primarycolor_type'))
+    secondarycolor = Column(Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', name='secondarycolor_type'))
     covering = Column(String(20))
-    includesconc = Column(String(1))
-    includessize = Column(String(1))
-    includestype = Column(String(50))
-    surface = Column(String(2))
-    count = Column(Integer)
+    includesconc = Column(Enum('+', '-', name='includesconc_type'))
+    includessize = Column(Enum('М', 'С', 'Г', name='includessize_type'))
+    includestype = Column(Enum('с', 'т', name='includestype_type'))
+    surface = Column(Enum('А', 'Б', 'В', 'В1', 'В2', 'Г', name='surface_type'))
+    count = Column(Integer, nullable=False)
     onepot = Column(Boolean)
-    piecetype = Column(String(10))
-    wallthickness = Column(String(10))
+    piecetype = Column(Enum('устие', 'стена', 'дръжка', 'дъно', 'профил', 'чучур', 'дъно+дръжка', 'профил+дръжка', 'устие+дръжка', 'стена+дръжка', 'псевдочучур', 'плавен прелом', 'биконичност', 'двоен съд', 'цял съд', name='piecetype_type'), nullable=False)
+    wallthickness = Column(Enum('М', 'С', 'Г', name='wallthickness_type'))
     handlesize = Column(String(50))
-    handletype = Column(String(50))
-    dishsize = Column(String(1))
+    handletype = Column(String(5))
+    dishsize = Column(Enum('М', 'С', 'Г', name='dishsize_type'))
     topsize = Column(Numeric(5, 2))
     necksize = Column(Numeric(5, 2))
     bodysize = Column(Numeric(5, 2))
     bottomsize = Column(Numeric(5, 2))
     dishheight = Column(Numeric(5, 2))
-    bottomtype = Column(String(2))
-    outline = Column(String(50))
+    bottomtype = Column(Enum('А', 'Б', 'В', 'А1', 'А2', 'Б1', 'Б2', 'В1', 'В2', name='bottomtype_type'))
+    outline = Column(Enum('1', '2', '3', name='outline_type'))
     category = Column(String(5))
     form = Column(String(5))
-    type = Column(String(10))
-    subtype = Column(String(50))
-    variant = Column(Text)
+    type = Column(Integer)
+    subtype = Column(String(1))
+    variant = Column(Integer)
     note = Column(Text)
     inventory = Column(Text)
     decoration = Column(Text)
@@ -150,7 +151,7 @@ class Tblfragment(Base):
     parallels = Column(Text)
     image = Column(LargeBinary)
     recordenteredby = Column(Text)
-    recordenteredon = Column(String(50))
+    recordenteredon = Column(String(50), server_default=text("CURRENT_TIMESTAMP"))
 
     # TODO: fix replationships
     #tbllayer = relationship('Tbllayer', back_populates='tblfragments')
@@ -259,9 +260,9 @@ class Tbllayerinclude(Base):
 
     includeid = Column(Integer, primary_key=True, server_default=text("nextval('tbllayerincludes_includeid_seq'::regclass)"))
     locationid = Column(ForeignKey('tbllayers.layerid'))
-    includetype = Column(Text)
+    includetype = Column(Enum('антропогенен', 'естествен', name='includetype_type'))
     includetext = Column(Text)
-    includesize = Column(Text)
+    includesize = Column(Enum('малки', 'средни', 'големи', name='includesize_type'))
     includeconc = Column(Text)
 
     # TODO: fix replationships
@@ -337,13 +338,13 @@ class Tblornament(Base):
     location = Column(Text)
     relationship = Column(Text)
     onornament = Column(Integer)
-    color1 = Column(String(10))
-    color2 = Column(String(10))
+    color1 = Column(Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', name='color1_type'))
+    color2 = Column(Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', name='color2_type'))
     encrustcolor1 = Column(String(10))
     encrustcolor2 = Column(String(10))
-    primary_ = Column(String(10))
-    secondary = Column(String(10))
-    tertiary = Column(String(10))
+    primary_ = Column(String(1))
+    secondary = Column(String(5))
+    tertiary = Column(String(1))
     quarternary = Column(String(10))
 
     # TODO: fix replationships
