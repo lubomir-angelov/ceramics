@@ -13,7 +13,7 @@ class Tbllayer(db.Model):
     __tablename__ = 'tbllayers'
 
     layerid = Column(Integer, primary_key=True, server_default=text("nextval('tbllayers_layerid_seq'::regclass)"))
-    layertype = Column(Enum('механичен', 'контекст', name='layer_type'))
+    layertype = Column(Enum('механичен', 'контекст', '', name='layer_type_'))
     layername = Column(Text)
     site = Column(Text)
     sector = Column(Text)
@@ -25,8 +25,8 @@ class Tbllayer(db.Model):
     level = Column(Text)
     structure = Column(Text)
     includes = Column(Text)
-    color1 = Column(Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', name='color1_type'))
-    color2 = Column(Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', name='color2_type'))
+    color1 = Column(Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', '', name='color1_type_'))
+    color2 = Column(Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', '', name='color2_type_'))
     photos = Column(LargeBinary)
     drawings = Column(LargeBinary)
     handfragments = Column(Integer)
