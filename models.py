@@ -99,37 +99,37 @@ class Tbllayer(db.Model):
         }
 
 
-class Tblfragment(Base):
+class Tblfragment(db.Model):
     __tablename__ = 'tblfragments'
 
     fragmentid = Column(Integer, primary_key=True, server_default=text("nextval('tblfragments_fragmentid_seq'::regclass)"))
     locationid = Column(ForeignKey('tbllayers.layerid'))
-    fragmenttype = Column(Enum('1', '2', name='fragment_type'))
-    technology = Column(Enum('1', '2', '2А', '2Б', name='technology_'))
-    speed = Column(Enum('1', '2', name='speed_type'))
-    baking = Column(Enum('Р', 'Н', name='baking_type'))
-    fract = Column(Enum('1', '2', '3', name='fract_type'))
-    primarycolor = Column(Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', name='primarycolor_type'))
-    secondarycolor = Column(Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', name='secondarycolor_type'))
-    covering = Column(String(20))
-    includesconc = Column(Enum('+', '-', name='includesconc_type'))
-    includessize = Column(Enum('М', 'С', 'Г', name='includessize_type'))
-    includestype = Column(Enum('с', 'т', name='includestype_type'))
-    surface = Column(Enum('А', 'Б', 'В', 'В1', 'В2', 'Г', name='surface_type'))
+    fragmenttype = Column(Enum('1', '2', '', name='fragmenttype_type'))
+    technology = Column(Enum('1', '2', '2А', '2Б', '', name='technology_type'))
+    speed = Column(Enum('1', '2', '', name='speed_type_'))
+    baking = Column(Enum('Р', 'Н', '', name='baking_type_'))
+    fract = Column(Enum('1', '2', '3', '', name='fract_type_'))
+    primarycolor = Column(Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', '', name='primarycolor_type_'))
+    secondarycolor = Column(Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', '', name='secondarycolor_type_'))
+    covering = Column(Enum('да', 'не', 'Ф1', 'Ф2', '', name='covering_type_'))
+    includesconc = Column(Enum('+', '-', '', name='includesconc_type_'))
+    includessize = Column(Enum('М', 'С', 'Г', '', name='includessize_type_'))
+    includestype = Column(Enum('с', 'т', '', name='includestype_type_'))
+    surface = Column(Enum('А', 'Б', 'В', 'В1', 'В2', 'Г', '', name='surface_type_'))
     count = Column(Integer, nullable=False)
-    onepot = Column(Boolean)
+    onepot = Column(Enum('да', 'не', '', name='onepot_type'))
     piecetype = Column(Enum('устие', 'стена', 'дръжка', 'дъно', 'профил', 'чучур', 'дъно+дръжка', 'профил+дръжка', 'устие+дръжка', 'стена+дръжка', 'псевдочучур', 'плавен прелом', 'биконичност', 'двоен съд', 'цял съд', name='piecetype_type'), nullable=False)
-    wallthickness = Column(Enum('М', 'С', 'Г', name='wallthickness_type'))
-    handlesize = Column(Enum('М', 'С', 'Г', name='handlesize_type'))
+    wallthickness = Column(Enum('М', 'С', 'Г', '',  name='wallthickness_type_'))
+    handlesize = Column(Enum('М', 'С', 'Г', '', name='handlesize_type'))
     handletype = Column(String(5))
-    dishsize = Column(Enum('М', 'С', 'Г', name='dishsize_type'))
+    dishsize = Column(Enum('М', 'С', 'Г', '', name='dishsize_type_'))
     topsize = Column(Numeric(5, 2))
     necksize = Column(Numeric(5, 2))
     bodysize = Column(Numeric(5, 2))
     bottomsize = Column(Numeric(5, 2))
     dishheight = Column(Numeric(5, 2))
-    bottomtype = Column(Enum('А', 'Б', 'В', 'А1', 'А2', 'Б1', 'Б2', 'В1', 'В2', name='bottomtype_type'))
-    outline = Column(Enum('1', '2', '3', name='outline_type'))
+    bottomtype = Column(Enum('А', 'Б', 'В', 'А1', 'А2', 'Б1', 'Б2', 'В1', 'В2', '',  name='bottomtype_type_'))
+    outline = Column(Enum('1', '2', '3', '', name='outline_typee'))
     category = Column(String(5))
     form = Column(String(5))
     type = Column(Integer)
@@ -240,7 +240,7 @@ class Tblfragment(Base):
         }
 
 
-class Tbllayerinclude(Base):
+class Tbllayerinclude(db.Model):
     __tablename__ = 'tbllayerincludes'
 
     includeid = Column(Integer, primary_key=True, server_default=text("nextval('tbllayerincludes_includeid_seq'::regclass)"))
@@ -273,7 +273,7 @@ class Tbllayerinclude(Base):
             'includeconc': self.includeconc
         }
 
-class Tblpok(Base):
+class Tblpok(db.Model):
     __tablename__ = 'tblpok'
 
     pokid = Column(Integer, primary_key=True, server_default=text("nextval('tblpok_pokid_seq'::regclass)"))
@@ -304,7 +304,7 @@ class Tblpok(Base):
         }
 
 
-class Tblornament(Base):
+class Tblornament(db.Model):
     __tablename__ = 'tblornaments'
 
     ornamentid = Column(Integer, primary_key=True, server_default=text("nextval('tblornaments_ornamentid_seq'::regclass)"))
