@@ -18,9 +18,10 @@ class Tbllayer(db.Model):
 
     layerid = Column(Integer, primary_key=True, server_default=text("nextval('tbllayers_layerid_seq'::regclass)"))
 
+    # One to many relationship with other tables
     fragments = relationship('Tblfragment', backref='tbllayers', lazy=True)
-    #pok = relationship('pok', backref='layer', lazy=True)
-    #layerincludes = relationship('layerincludes', backref='layer', lazy=True)
+    pok = relationship('Tblpok', backref='tbllayers', lazy=True)
+    layerincludes = relationship('Tbllayerinclude', backref='tbllayers', lazy=True)
 
     layertype = Column(Enum('механичен', 'контекст', '', name='layer_type_'))
     layername = Column(Text)
