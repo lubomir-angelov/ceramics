@@ -1,124 +1,169 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bg">
 <head>
     <meta charset="utf-8">
     <title>Ceramics tables load data</title>
 </head>
 <body>
 <form action="{{ url_for('load_fragments')}}" method="post">
-    <h5>Enter the data for tbl_fragments</h5>
-    <div lang="bg">
-        <input type="text" name="technology" placeholder="технология">
-    </div>
-    <div lang="bg">
-        <input type="text" name="speed" placeholder="speed">
+    <h5>Въведи данни за таблица фрагменти:</h5>
+    <div>
+        <label for="technology">Технология:</label>
+        <input type="text" id="technology" name="technology" placeholder="1, 2, 2А, 2Б">
     </div>
     <div>
-        <input type="text" name="baking" placeholder="baking">
+        <label for="speed">Скорост:</label>
+        <input type="text" id="speed" name="speed" placeholder="1, 2">
     </div>
     <div>
-        <input type="text" name="fract" placeholder="fract">
+        <label for="baking">Изпичане:</label>
+        <input type="text" id="baking" name="baking" placeholder="Р, Н">
     </div>
     <div>
-        <input type="text" name="primarycolor" placeholder="primarycolor">
+        <label for="fract">Лом:</label>
+        <input type="text" id="fract" name="fract" placeholder="1, 2, 3">
     </div>
     <div>
-        <input type="text" name="secondarycolor" placeholder="secondarycolor">
+        <label for="primarycolor">Цвят1:</label>
+        <input type="text" id="primarycolor" name="primarycolor" placeholder="цвят1">
     </div>
     <div>
-        <input type="text" name="covering" placeholder="covering">
+        <label for="secondarycolor">Цвят2:</label>
+        <input type="text" id="secondarycolor" name="secondarycolor" placeholder="цвят2">
     </div>
     <div>
-        <input type="text" name="includesconc" placeholder="includesconc">
+        <label for="covering">Покритие:</label>
+        <input type="text" id="covering" name="covering" placeholder="покритие">
     </div>
     <div>
-        <input type="text" name="includessize" placeholder="includessize">
+        <label for="includesconc">Концентрация на примеси:</label>
+        <input type="text" id="includesconc" name="includesconc" placeholder="+, -">
     </div>
     <div>
-        <input type="text" name="includestype" placeholder="includestype">
+        <label for="includessize">Големина на примеси:</label>
+        <input type="text" id="includessize" name="includessize" placeholder="М, С, Г">
     </div>
     <div>
-        <input type="text" name="surface" placeholder="surface">
+        <label for="includestype">Вид на примеси:</label>
+        <input type="text" id="includestype" name="includestype" placeholder="с, т">
     </div>
     <div>
-        <input type="text" name="count" placeholder="count">
+        <label for="surface">Повърхност:</label>
+        <input type="text" id="surface" name="surface" placeholder="А, Б, В, В1, В2, Г">
     </div>
     <div>
-         <input type="text" name="onepot" placeholder="onepot">
+        <label for="count">Брой:</label>
+        <input type="text" id="count" name="count" placeholder="брой">
     </div>
     <div>
-        <input type="text" name="piecetype" placeholder="piecetype">
+         <label for="onepot">Цял съд:</label>
+         <input type="text" id="onepot" name="onepot" placeholder="да/не">
     </div>
     <div>
-        <input type="text" name="wallthickness" placeholder="wallthickness">
+        <label for="piecetype">Фрагмент от:</label>
+        <input type="text" id="piecetype" name="piecetype" placeholder="фрагмент от">
     </div>
     <div>
-        <input type="text" name="handlesize" placeholder="handlesize">
+        <label for="wallthickness">Дебелина на стена:</label>
+        <input type="text" id="wallthickness" name="wallthickness" placeholder="М, С, Г">
     </div>
     <div>
-        <input type="text" name="handletype" placeholder="handletype">
+        <label for="handlesize">Дебелина на дръжка:</label>
+        <input type="text" id="handlesize" name="handlesize" placeholder="М, С, Г">
     </div>
     <div>
-        <input type="text" name="dishsize" placeholder="dishsize">
+        <label for="handletype">Тип дръжка:</label>
+        <input type="text" id="handletype" name="handletype" placeholder="тип дръжка">
     </div>
     <div>
-        <input type="text" name="topsize" placeholder="topsize">
+        <label for="dishsize">Размер съд:</label>
+        <input type="text" id="dishsize" name="dishsize" placeholder="М, С, Г">
     </div>
     <div>
-        <input type="text" name="necksize" placeholder="necksize">
+        <label for="topsize">Размер устие:</label>
+        <input type="text" id="topsize" name="topsize" placeholder="размер устие">
     </div>
     <div>
-        <input type="text" name="bodysize" placeholder="bodysize">
+        <label for="necksize">Размер шия:</label>
+        <input type="text" id="necksize" name="necksize" placeholder="размер шия">
     </div>
     <div>
-        <input type="text" name="bottomsize" placeholder="bottomsize">
+        <label for="bodysize">Размер тяло:</label>
+        <input type="text" id="bodysize" name="bodysize" placeholder="размер тяло">
     </div>
     <div>
-        <input type="text" name="dishheight" placeholder="dishheight">
+        <label for="bottomsize">Размер дъно:</label>
+        <input type="text" id="bottomsize" name="bottomsize" placeholder="размер дъно">
     </div>
     <div>
-        <input type="text" name="bottomtype" placeholder="bottomtype">
+        <label for="dishheight">Височина съд:</label>
+        <input type="text" id="dishheight" name="dishheight" placeholder="височина съд">
     </div>
     <div>
-        <input type="text" name="outline" placeholder="outline">
+        <label for="bottomtype">Тип дъно:</label>
+        <input type="text" id="bottomtype" name="bottomtype" placeholder="А, Б, В, А1, А2, Б1, Б2, В1, В2">
     </div>
     <div>
-        <input type="text" name="category" placeholder="category">
+        <label for="outline">Силует:</label>
+        <input type="text" id="outline" name="outline" placeholder="1, 2, 3">
     </div>
     <div>
-        <input type="text" name="form" placeholder="form">
+        <label for="category">Категория:</label>
+        <input type="text" id="category" name="category" placeholder="категория">
     </div>
     <div>
-        <input type="text" name="type" placeholder="type">
+        <label for="form">Форма:</label>
+        <input type="text" id="form" name="form" placeholder="форма">
     </div>
     <div>
-        <input type="text" name="subtype" placeholder="subtype">
+        <label for="type">Тип:</label>
+        <input type="text" id="type" name="type" placeholder="тип">
     </div>
     <div>
-        <input type="text" name="variant" placeholder="variant">
+        <label for="subtype">Подтип:</label>
+        <input type="text" id="subtype" name="subtype" placeholder="подтип">
     </div>
     <div>
-        <input type="text" name="note" placeholder="note">
+        <label for="variant">Вариант:</label>
+        <input type="text" id="variant" name="variant" placeholder="вариант">
     </div>
     <div>
-        <input type="text" name="inventory" placeholder="inventory">
+         <label for="note">Бележка:</label>
+        <input type="text" id="note" name="note" placeholder="бележка">
     </div>
     <div>
-        <input type="text" name="decoration" placeholder="decoration">
+         <label for="inventory">Инвентарен номер:</label>
+        <input type="text" id="inventory" name="inventory" placeholder="инвентарен номер">
     </div>
     <div>
-        <input type="text" name="composition" placeholder="composition">
+        <label for="decoration">Украса:</label>
+        <input type="text" id="decoration" name="decoration" placeholder="украса">
     </div>
     <div>
-        <input type="text" name="parallels" placeholder="parallels">
+        <label for="composition">Композиция:</label>
+        <input type="text" id="composition" name="composition" placeholder="композиция">
     </div>
     <div>
-        <input type="text" name="recordenteredby" placeholder="recordenteredby">
+         <label for="parallels">Паралели:</label>
+        <input type="text" id="parallels" name="parallels" placeholder="паралели">
+    </div>
+    <div>
+        <label for="recordenteredby">Въведен от:</label>
+        <input type="text" id="recordenteredby" name="recordenteredby" placeholder="въведен от">
     </div>
     <div>
         <button >Submit</button>
     </div>
+{% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
 </form>
 </body>
 

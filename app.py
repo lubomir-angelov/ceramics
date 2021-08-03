@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, flash
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import inspect
 
 import models
 
@@ -42,8 +43,6 @@ def load_tbl_pok():
 
 @app.route("/load_layers", methods=['POST'])
 def load_layers():
-    layertype = request.form["layertype"]
-    layername = request.form["layername"]
     site = request.form["site"]
     sector = request.form["sector"]
     square = request.form["square"]
@@ -55,18 +54,25 @@ def load_layers():
     includes = request.form["includes"]
     color1 = request.form["color1"]
     color2 = request.form["color2"]
-    handfragments = request.form["handfragments"]
-    wheelfragment = request.form["wheelfragment"]
     recordenteredby = request.form["recordenteredby"]
     recordcreatedby = request.form["recordcreatedby"]
     recordcreatedon = request.form["recordcreatedon"]
     description = request.form["description"]
     akb_num = request.form["akb_num"]
-    entry = models.Tbllayer(layertype, layername, site, sector, square, context, layer, stratum, level,
-                 structure, includes, color1, color2, handfragments, wheelfragment, recordenteredby,
+    entry = models.Tbllayer(site, sector, square, context, layer, stratum, level,
+                 structure, includes, color1, color2, recordenteredby,
                      recordcreatedby, recordcreatedon, description, akb_num)
     db.session.add(entry)
+    name = entry.recordenteredby
+    print(name)
+    #hist = inspect(entry).attrs.myattribute.history
     db.session.commit()
+
+    layer_id = (models.Tbllayer.query.filter_by(recordenteredby=name).order_by(models.Tbllayer.layerid.desc()).first())
+    flash(f'Your layer id is: {layer_id}')
+
+
+    #return hist
 
     return render_template("tbl_layers.html")
 
@@ -127,7 +133,11 @@ def load_fragments():
                  necksize, bodysize, bottomsize, dishheight, bottomtype, outline, category, form, type, subtype, variant,
                  note, inventory, decoration, composition, parallels, recordenteredby)
     db.session.add(entry)
+    name = entry.recordenteredb
     db.session.commit()
+
+    fragment_id  = (models.Tblfragments.query.filter_by(recordenteredby=name).order_by(models.Tblfragments.fragmentid.desc()).first())
+    flash(f'Your fragment id is: {fragment_id}')
 
     return render_template("tbl_fragments.html")
 

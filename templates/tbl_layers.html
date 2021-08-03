@@ -1,77 +1,155 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bg">
 <head>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <meta charset="utf-8">
     <title>Ceramics tables load data</title>
 </head>
 <body>
-<form action="{{ url_for('load_layers')}}" method="post">
-    <h5>Enter the data for tbl_layers</h5>
-    <div lang="bg">
-        <input type="text" name="layertype" placeholder="layertype">
-    </div>
-    <div>
-        <input type="text" name="layername" placeholder="layername">
-    </div>
-    <div>
-        <input type="text" name="site" placeholder="site">
-    </div>
-    <div>
-        <input type="text" name="sector" placeholder="sector">
-    </div>
-    <div>
-        <input type="text" name="square" placeholder="square">
-    </div>
-    <div>
-        <input type="text" name="context" placeholder="context">
-    </div>
-    <div>
-        <input type="text" name="layer" placeholder="layer">
-    </div>
-    <div>
-        <input type="text" name="stratum" placeholder="stratum">
-    </div>
-    <div>
-        <input type="text" name="level" placeholder="levels">
-    </div>
-    <div>
-        <input type="text" name="structure" placeholder="structure">
-    </div>
-    <div>
-        <input type="text" name="includes" placeholder="includes">
-    </div>
-    <div>
-        <input type="text" name="color1" placeholder="color1">
-    </div>
-    <div>
-        <input type="text" name="color2" placeholder="color2">
-    </div>
-    <div>
-        <input type="text" name="handfragments" placeholder="handfragments">
-    </div>
-    <div>
-        <input type="text" name="wheelfragment" placeholder="wheelfragment">
-    </div>
-    <div>
-        <input type="text" name="recordenteredby" placeholder="recordenteredby">
-    </div>
-    <div>
-        <input type="text" name="recordcreatedby" placeholder="recordcreatedby">
-    </div>
-    <div>
-        <input type="text" name="recordcreatedon" placeholder="recordcreatedon">
-    </div>
-    <div>
-        <input type="text" name="description" placeholder="description">
-    </div>
-    <div>
-        <input type="text" name="akb_num" placeholder="akb_num">
-    </div>
-    <div>
-        <button >Submit</button>
-    </div>
-</form>
-</body>
 
+<!-- scripts needed to run bootstrap code -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
 </html>
+<!-- container holding all elements in the page-->
+    <div class="container">
+        <div class="row">
+            <div class="col md-12">
+                <div class="jumbotron p-3">
+                    <!-- heading and button to open the form -->
+                    <h2>Enter <b>Layers</b> <button type="button" class="btn btn-success float right"
+                    data-toggle="modal" data-target="#mymodal">Enter new layer</button></h2>
+                    <!-- menu to show data to be loaded -->
+                    <table class="table table-hover table-dark">
+                        <tr>
+                            <th>Site</th>
+                            <th>Sector</th>
+                            <th>Square</th>
+                            <th>Context</th>
+                            <th>Layer</th>
+                            <th>Stratum</th>
+                            <th>Level</th>
+                            <th>structure</th>
+                            <th>includes</th>
+                            <th>color1</th>
+                            <th>color2</th>
+                            <th>recordenteredby</th>
+                            <th>recordcreatedby</th>
+                            <th>recordcreatedon</th>
+                            <th>description</th>
+                            <th>akb_num</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <!-- button to trigger editing of data to be loaded -->
+                                <!-- TODO: add #modaledit class that edits the entered data -->
+                                <a href="" class="btn btn-warning btn-xs" data toggle="model" data-target="#modaledit">Edit</a>
+                            </td>
+                        </tr>
+                    </table>
+           </div>
+        </div>
+    </div>
+</div>
+<!-- begin form to enter data -->
+ <div id="mymodal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+        <h4 class="modal-title">Enter layer</h4>
+</div>
+                <div class="modal-body">
+                    <form action="{{ url_for('load_layers')}}" method="post">
+                        <div class="form group">
+                            <label for="site">Обект:</label>
+                            <input type="text" class="form-control" id="site" name="site" placeholder="име на обект">
+                        </div>
+                        <div class="form group">
+                            <label for="sector">Сектор:</label>
+                            <input type="text" class="form-control" id="sector" name="sector" placeholder="име на сектор">
+                        </div>
+                        <div class="form group">
+                            <label for="square">Квадрат:</label>
+                            <input type="text" class="form-control" id="square" name="square" placeholder="име на квадрат">
+                        </div>
+                        <div class="form group">
+                            <label for="context">Контекст:</label>
+                            <input type="text" class="form-control" id="context" name="context" placeholder="име на контекст">
+                        </div>
+                        <div class="form group">
+                            <label for="layer">Мех. пласт:</label>
+                            <input type="text" class="form-control" id="layer" name="layer" placeholder="механичен пласт">
+                        </div>
+                        <div class="form group">
+                            <label for="stratum">Стр. пласт:</label>
+                            <input type="text" class="form-control" id="stratum" name="stratum" placeholder="стратиграфски пласт">
+                        </div>
+                        <div class="form group">
+                            <label for="level">Нивелация:</label>
+                            <input type="text" class="form-control" id="level" name="level" placeholder="нивелация">
+                        </div>
+                        <div class="form group">
+                            <label for="structure">Структура:</label>
+                            <input type="text" class="form-control" id="structure" name="structure" placeholder="структура">
+                        </div>
+                        <div class="form group">
+                            <label for="includes">Примеси:</label>
+                            <input type="text" class="form-control" id="includes" name="includes" placeholder="примеси">
+                        </div>
+                        <div class="form group">
+                            <label for="color1">Цвят1:</label>
+                            <input type="text" class="form-control" id="color1" name="color1" placeholder="цвят1">
+                        </div>
+                        <div class="form group">
+                            <label for="color2">Цвят2:</label>
+                            <input type="text" class="form-control" id="color2" name="color2" placeholder="цвят2">
+                        </div>
+                        <div class="form group">
+                            <label for="recordenteredby">Въведен от:</label>
+                            <input type="text" class="form-control" id="recordenteredby" name="recordenteredby" placeholder="въведен от">
+                        </div>
+                        <div class="form group">
+                            <label for="recordcreatedby">Създаден от:</label>
+                            <input type="text" class="form-control" id="recordcreatedby" name="recordcreatedby" placeholder="създаден от">
+                        </div>
+                        <div class="form group">
+                            <label for="recordcreatedon">Създаден на:</label>
+                            <input type="text" class="form-control" id="recordcreatedon" name="recordcreatedon" placeholder="дата на създаване">
+                        </div>
+                        <div class="form group">
+                            <label for="description">Описание:</label>
+                            <input type="text" class="form-control" id="description" name="description" placeholder="описание">
+                        </div>
+                        <div class="form group">
+                            <label for="akb_num">АКБ номер:</label>
+                            <input type="text" class="form-control" id="akb_num" name="akb_num" placeholder="АКБ номер">
+                        </div>
+                        <div class="form group">
+                            <button >Submit</button>
+                        </div>
+                    </form>
+                    <!-- end form to enter data -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- close container -->
+<!-- print layerid generated in DB after db.commit -->
+<!-- TODO: make the output look better -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+

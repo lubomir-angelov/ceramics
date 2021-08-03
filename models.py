@@ -1,6 +1,10 @@
 # coding: utf-8
+import datetime
+import pydoc_data
+
 from sqlalchemy import Boolean, CHAR, Column, Enum, ForeignKey, Integer, LargeBinary, Numeric, String, Text, text, Date
 from sqlalchemy.orm import relationship
+from sqlalchemy.orm import validates
 from sqlalchemy.ext.declarative import declarative_base
 
 from app import db
@@ -13,30 +17,161 @@ class Tbllayer(db.Model):
     __tablename__ = 'tbllayers'
 
     layerid = Column(Integer, primary_key=True, server_default=text("nextval('tbllayers_layerid_seq'::regclass)"))
+
+    fragments = relationship('Tblfragment', backref='tbllayers', lazy=True)
+    #pok = relationship('pok', backref='layer', lazy=True)
+    #layerincludes = relationship('layerincludes', backref='layer', lazy=True)
+
     layertype = Column(Enum('механичен', 'контекст', '', name='layer_type_'))
     layername = Column(Text)
+    @validates('layername')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
+
     site = Column(Text)
+    @validates('site')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
+
     sector = Column(Text)
+    @validates('sector')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
+
     square = Column(Text)
+    @validates('square')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
+
     context = Column(Text)
+    @validates('context')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
+
     layer = Column(Text)
+    @validates('layer')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
+
     stratum = Column(Text)
+    @validates('stratum')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     parentid = Column(Integer)
+
     level = Column(Text)
+    @validates('level')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
+
     structure = Column(Text)
+    @validates('structure')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
+
     includes = Column(Text)
+    @validates('includes')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
+
     color1 = Column(Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', '', name='color1_type_'))
     color2 = Column(Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', '', name='color2_type_'))
+
     photos = Column(LargeBinary)
+    @validates('photos')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
+
     drawings = Column(LargeBinary)
+    @validates('drawings')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
+
     handfragments = Column(Integer)
+    @validates('handfragments')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
+
     wheelfragment = Column(Integer)
+    @validates('wheelfragment')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
+
     recordenteredby = Column(Text)
+    @validates('recordenteredby')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
+
     recordenteredon = Column(Date, nullable=False, server_default=text("CURRENT_TIMESTAMP"))
     recordcreatedby = Column(Text)
-    recordcreatedon = Column(Date)
+    @validates('recordcreatedby')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
+
+    recordcreatedon = Column(Date, nullable=False)
     description = Column(Text)
+    @validates('description')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
+
     akb_num = Column(Integer)
+    @validates('akb_num')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value,str) and value == '':
+            return None
+        else:
+            return value
 
     # TODO: fix replationships
     #tblfragments = relationship('Tblfragment', back_populates='tbllayers')
@@ -44,11 +179,9 @@ class Tbllayer(db.Model):
     #tblornaments = relationship('Tblornament', back_populates='tbllayers')
     #tblpoks = relationship('Tblpok', back_populates='tbllayers')
 
-    def __init__(self, layertype, layername, site, sector, square, context, layer, stratum, level,
-                 structure, includes, color1, color2, handfragments, wheelfragment, recordenteredby,
+    def __init__(self, site, sector, square, context, layer, stratum, level,
+                 structure, includes, color1, color2, recordenteredby,
                  recordcreatedby, recordcreatedon, description, akb_num):
-        self.layertype = layertype
-        self.layername = layername
         self.site = site
         self.sector = sector
         self.square = square
@@ -60,8 +193,6 @@ class Tbllayer(db.Model):
         self.includes = includes
         self.color1 = color1
         self.color2 = color2
-        self.handfragments = handfragments
-        self.wheelfragment = wheelfragment
         self.recordenteredby = recordenteredby
         self.recordcreatedby = recordcreatedby
         self.recordcreatedon = recordcreatedon
@@ -103,8 +234,15 @@ class Tblfragment(db.Model):
     __tablename__ = 'tblfragments'
 
     fragmentid = Column(Integer, primary_key=True, server_default=text("nextval('tblfragments_fragmentid_seq'::regclass)"))
-    locationid = Column(ForeignKey('tbllayers.layerid'))
+    locationid = Column(Integer, ForeignKey('tbllayers.layerid'))
     fragmenttype = Column(Enum('1', '2', '', name='fragmenttype_type'))
+
+    @validates('fragmenttype')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     technology = Column(Enum('1', '2', '2А', '2Б', '', name='technology_type'))
     speed = Column(Enum('1', '2', '', name='speed_type_'))
     baking = Column(Enum('Р', 'Н', '', name='baking_type_'))
@@ -122,29 +260,155 @@ class Tblfragment(db.Model):
     wallthickness = Column(Enum('М', 'С', 'Г', '',  name='wallthickness_type_'))
     handlesize = Column(Enum('М', 'С', 'Г', '', name='handlesize_type'))
     handletype = Column(String(5))
+
+    @validates('handletype')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     dishsize = Column(Enum('М', 'С', 'Г', '', name='dishsize_type_'))
     topsize = Column(Numeric(5, 2))
+
+    @validates('topsize')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     necksize = Column(Numeric(5, 2))
+
+    @validates('necksize')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     bodysize = Column(Numeric(5, 2))
+
+    @validates('bodysize')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     bottomsize = Column(Numeric(5, 2))
+
+    @validates('bottomsize')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     dishheight = Column(Numeric(5, 2))
+
+    @validates('dishheight')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     bottomtype = Column(Enum('А', 'Б', 'В', 'А1', 'А2', 'Б1', 'Б2', 'В1', 'В2', '',  name='bottomtype_type_'))
     outline = Column(Enum('1', '2', '3', '', name='outline_typee'))
     category = Column(String(5))
+
+    @validates('category')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     form = Column(String(5))
+
+    @validates('form')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     type = Column(Integer)
+
+    @validates('type')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     subtype = Column(String(1))
+
+    @validates('subtype')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     variant = Column(Integer)
+
+    @validates('variant')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     note = Column(Text)
+
+    @validates('note')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     inventory = Column(Text)
+
+    @validates('inventory')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     decoration = Column(Text)
+
+    @validates('decoration')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     composition = Column(Text)
+
+    @validates('composition')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     parallels = Column(Text)
+
+    @validates('parallels')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     image = Column(LargeBinary)
+
+    @validates('image')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     recordenteredby = Column(Text)
+
+    @validates('recordenteredby')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     recordenteredon = Column(String(50), server_default=text("CURRENT_TIMESTAMP"))
 
-    tbllayer = relationship('Tbllayer')
+    #tbllayer = relationship('Tbllayer')
     # TODO: fix replationships
     #tbllayer = relationship('Tbllayer', back_populates='tblfragments')
     #tblornaments = relationship('Tblornament', back_populates='tblfragment')
@@ -245,12 +509,26 @@ class Tbllayerinclude(db.Model):
 
     includeid = Column(Integer, primary_key=True, server_default=text("nextval('tbllayerincludes_includeid_seq'::regclass)"))
     locationid = Column(ForeignKey('tbllayers.layerid'))
-    includetype = Column(Enum('антропогенен', 'естествен', name='includetype_type'))
+    includetype = Column(Enum('антропогенен', 'естествен', '', name='includetype_type'))
     includetext = Column(Text)
-    includesize = Column(Enum('малки', 'средни', 'големи', name='includesize_type'))
+
+    @validates('includetext')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
+    includesize = Column(Enum('малки', 'средни', 'големи', '', name='includesize_type'))
     includeconc = Column(Text)
 
-    tbllayer = relationship('Tbllayer')
+    @validates('includeconc')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
+
+    #tbllayer = relationship('Tbllayer')
     # TODO: fix replationships
     #tbllayer = relationship('Tbllayer', back_populates='tbllayerincludes')
 
@@ -279,10 +557,31 @@ class Tblpok(db.Model):
     pokid = Column(Integer, primary_key=True, server_default=text("nextval('tblpok_pokid_seq'::regclass)"))
     locationid = Column(ForeignKey('tbllayers.layerid'))
     type = Column(Text)
+
+    @validates('type')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     quantity = Column(Integer)
+
+    @validates('quantity')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     weight = Column(Numeric(6, 3))
 
-    tbllayer = relationship('Tbllayer')
+    @validates('weight')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
+
+    #tbllayer = relationship('Tbllayer')
     # TODO: fix replationships
     #tbllayer = relationship('Tbllayer', back_populates='tblpoks')
 
@@ -310,16 +609,79 @@ class Tblornament(db.Model):
     ornamentid = Column(Integer, primary_key=True, server_default=text("nextval('tblornaments_ornamentid_seq'::regclass)"))
     fragmentid = Column(ForeignKey('tblfragments.fragmentid'))
     location = Column(Text)
+
+    @validates('location')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     relationship = Column(Text)
+
+    @validates('relationship')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     onornament = Column(Integer)
-    color1 = Column(Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', name='color1_type'))
-    color2 = Column(Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', name='color2_type'))
+
+    @validates('onornament')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
+    color1 = Column(Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', '', name='color1_type'))
+    color2 = Column(Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', '', name='color2_type'))
     encrustcolor1 = Column(String(10))
+
+    @validates('encrustcolor1')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     encrustcolor2 = Column(String(10))
+
+    @validates('encrustcolor2')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     primary_ = Column(String(1))
+
+    @validates('primary')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     secondary = Column(String(5))
+
+    @validates('secondary')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     tertiary = Column(String(1))
+
+    @validates('tertiary')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
     quarternary = Column(String(10))
+
+    @validates('quarternary')
+    def empty_string_to_null(self, key, value):
+        if isinstance(value, str) and value == '':
+            return None
+        else:
+            return value
 
     #tbllayer = relationship('Tblfragment')
     # TODO: fix replationships
