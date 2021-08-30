@@ -1,0 +1,50 @@
+{% include 'header.html' %}
+{% block body %}
+<!-- container holding all elements in the page-->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="table-responsive">
+          <div class="text-center">
+            <h2>Примеси</h2>
+          </div>
+        <!-- button to open the form -->
+        <h2><a class="btn btn-success"
+               href="{{ url_for('layer_includes_add') }}" role="button">Въведи пластов примес</a></h2>
+        <!-- menu to show data to be loaded -->
+        <table class="table">
+          <tr class="table-success">
+           <th>ID примес</th>
+           <th>ID пласт</th>
+           <th>Тип</th>
+           <th>Текстура</th>
+           <th>Размер</th>
+           <th>Концентрация</th>
+          </tr>
+          {% for row in layer_includes %}
+          <tr>
+           <td>{{row.includeid}}</td>
+           <td>{{row.locationid}}</td>
+           <td>{{row.includetype}}</td>
+           <td>{{row.includetext}}</td>
+           <td>{{row.includesize}}</td>
+           <td>{{row.includeconc}}</td>
+           <td>
+             <!-- button to trigger editing of data to be loaded -->
+             <a href="{{ url_for('layer_includes_update', current_includeid=row.includeid) }}"
+                class="btn btn-warning btn-xs">Промяна</a>
+           </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% if prev_url %}
+<a href="{{ prev_url }}">По-нови пластови примеси</a>
+{% endif %}
+{% if next_url %}
+<a href="{{ next_url }}">По-стари пластови примеси</a>
+{% endif %}
+{% endblock %}

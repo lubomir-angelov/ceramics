@@ -1,0 +1,73 @@
+{% include 'header.html' %}
+
+{% block body %}
+<!-- container holding all elements in the page-->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="table-responsive">
+          <div class="text-center">
+            <h2>Пластове</h2>
+          </div>
+        <!-- button to open the form -->
+        <h2><a class="btn btn-success"
+               href="{{ url_for('layers_add') }}" role="button">Въведи пласт</a></h2>
+        <!-- menu to show data to be loaded -->
+        <table class="table">
+          <tr class="table-success">
+           <th>ID пласт</th>
+           <th>Обект</th>
+           <th>Сектор</th>
+           <th>Квадрат</th>
+           <th>Контекст</th>
+           <th>Пласт</th>
+           <th>Стратграфия</th>
+           <th>Ниво</th>
+           <th>Структура</th>
+           <th>Примеси</th>
+           <th>Цвят1</th>
+           <th>Цвят2</th>
+           <th>Въведен от</th>
+           <th>Създаден от</th>
+           <th>Създаден на</th>
+           <th>Описание</th>
+           <th>АКБ Номер</th>
+          </tr>
+          {% for row in layers %}
+          <tr>
+           <td>{{row.layerid}}</td>
+           <td>{{row.site}}</td>
+           <td>{{row.sector}}</td>
+           <td>{{row.square}}</td>
+           <td>{{row.context}}</td>
+           <td>{{row.layer}}</td>
+           <td>{{row.stratum}}</td>
+           <td>{{row.level}}</td>
+           <td>{{row.structure}}</td>
+           <td>{{row.includes}}</td>
+           <td>{{row.color1}}</td>
+           <td>{{row.color2}}</td>
+           <td>{{row.recordenteredby}}</td>
+           <td>{{row.recordcreatedby}}</td>
+           <td>{{row.recordcreatedon}}</td>
+           <td>{{row.description}}</td>
+           <td>{{row.akbnum}}</td>
+           <td>
+             <!-- button to trigger editing of data to be loaded -->
+             <a href="{{ url_for('layers_update', current_layerid=row.layerid) }}"
+                class="btn btn-warning btn-xs">Промяна</a>
+           </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% if prev_url %}
+<a href="{{ prev_url }}">По-нови пластове</a>
+{% endif %}
+{% if next_url %}
+<a href="{{ next_url }}">По-стари пластове</a>
+{% endif %}
+{% endblock %}

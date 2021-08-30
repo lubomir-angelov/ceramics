@@ -1,0 +1,65 @@
+{% include 'header.html' %}
+
+{% block body %}
+<!-- container holding all elements in the page-->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="table-responsive">
+          <div class="text-center">
+              <h2>Орнаменти</h2>
+          </div>
+        <!-- button to open the form -->
+        <h2><a class="btn btn-success"
+               href="{{ url_for('ornaments_add') }}" role="button">Въведи орнамент</a></h2>
+        <!-- menu to show data to be loaded -->
+        <table class="table">
+          <tr class="table-success">
+            <th>ID орнамент</th>
+            <th>ID фрагмент</th>
+            <th>Положение</th>
+            <th>Връзка</th>
+            <th>Върху орнамент</th>
+            <th>Цвят1</th>
+            <th>Цвят2</th>
+            <th>Цвят инкрустиране1</th>
+            <th>Цвят инкрусиране2</th>
+            <th>Украса</th>
+            <th>Орнамент</th>
+            <th>Комбинация</th>
+            <th>Мотив</th>
+          </tr>
+          {% for row in ornaments %}
+          <tr>
+           <td>{{row.ornamentid}}</td>
+           <td>{{row.fragmentid}}</td>
+           <td>{{row.location}}</td>
+           <td>{{row.relationship}}</td>
+           <td>{{row.onornament}}</td>
+           <td>{{row.color1}}</td>
+           <td>{{row.color2}}</td>
+           <td>{{row.encrustcolor1}}</td>
+           <td>{{row.encrustcolor2}}</td>
+           <td>{{row.primary_}}</td>
+           <td>{{row.secondary}}</td>
+           <td>{{row.tertiary}}</td>
+           <td>{{row.quarternary}}</td>
+           <td>
+             <!-- button to trigger editing of data to be loaded -->
+             <a href="{{ url_for('ornaments_update', current_ornamentid=row.ornamentid) }}"
+                class="btn btn-warning btn-xs">Промяна</a>
+           </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% if prev_url %}
+<a href="{{ prev_url }}">По-нови Орнаменти</a>
+{% endif %}
+{% if next_url %}
+<a href="{{ next_url }}">По-стари Орнаменти</a>
+{% endif %}
+{% endblock %}

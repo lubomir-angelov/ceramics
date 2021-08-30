@@ -1,0 +1,50 @@
+{% include 'header.html' %}
+{% block body %}
+<!-- container holding all elements in the page-->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="table-responsive">
+          <div class="text-center">
+                <h2>ПОК</h2>
+          </div>
+        <!-- button to open the form -->
+        <h2><a class="btn btn-success"
+               href="{{ url_for('pok_add') }}" role="button">Въведи Пок</a></h2>
+        <!-- menu to show data to be loaded -->
+        <table class="table">
+          <tr class="table-success">
+            <th>ID ПОК</th>
+            <th>ID пласт</th>
+            <th>Тип ПОК</th>
+            <th>Количество</th>
+            <th>ПОК Килограми</th>
+            <th>СОК Килограми</th>
+          </tr>
+          {% for row in poks %}
+          <tr>
+           <td>{{row.pokid}}</td>
+           <td>{{row.locationid}}</td>
+           <td>{{row.type}}</td>
+           <td>{{row.quantity}}</td>
+           <td>{{row.weight}}</td>
+           <td>{{row.sok_weight}}</td>
+           <td>
+             <!-- button to trigger editing of data to be loaded -->
+             <a href="{{ url_for('pok_update', current_pokid=row.pokid) }}"
+                class="btn btn-warning btn-xs">Промяна</a>
+           </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% if prev_url %}
+<a href="{{ prev_url }}">По-нов ПОК</a>
+{% endif %}
+{% if next_url %}
+<a href="{{ next_url }}">По-стар ПОК</a>
+{% endif %}
+{% endblock %}

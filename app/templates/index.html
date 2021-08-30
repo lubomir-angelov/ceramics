@@ -1,0 +1,30 @@
+{% include 'header.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col md-5">
+            <div class="text-left">
+                <h1>
+                    <a class="btn btn btn-success"
+                       href="{{ url_for('layers') }}" role="button">Пластове
+                    </a>
+                    <a class="btn btn-success"
+                       href="{{ url_for('layer_includes') }}" role="button">Примеси
+                    </a>
+                    <a class="btn btn-success"
+                       href="{{ url_for('pok') }}" role="button">ПОК
+                    </a>
+                    <a class="btn btn-success"
+                       href="{{ url_for('fragments') }}" role="button">Фрагменти
+                    </a>
+                    <a class="btn btn-success"
+                       href="{{ url_for('ornaments') }}" role="button">Орнаменти
+                    </a>
+
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

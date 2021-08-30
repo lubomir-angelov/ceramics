@@ -1,0 +1,114 @@
+{% include 'header.html' %}
+{% block body %}
+<!-- container holding all elements in the page-->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="table-responsive">
+          <div class="text-center">
+              <h2 class="display-4">Фрагменти</h2>
+          </div>
+        <!-- button to open the form -->
+        <h2><a class="btn btn-success"
+               href="{{ url_for('fragments_add') }}" role="button">Въведи фрагмент</a></h2>
+        <!-- menu to show data to be loaded -->
+        <table class="table">
+          <tr class="table-success">
+            <th>ID фрагмент</th>
+            <th>ID пласт</th>
+            <th>Технология</th>
+            <th>Скорост</th>
+            <th>Изпичане</th>
+            <th>Фракт</th>
+            <th>Основен цвят</th>
+            <th>Вторичен цвят</th>
+            <th>Покритие</th>
+            <th>Концентрация на примеси</th>
+            <th>Големина на примеси</th>
+            <th>Вид примеси</th>
+            <th>Повърхност</th>
+            <th>Брой</th>
+            <th>Цял съд</th>
+            <th>Фрагмент от</th>
+            <th>Дебелина на стената</th>
+            <th>Размер дръжка</th>
+            <th>Тип дръжка</th>
+            <th>Размер съд</th>
+            <th>Размер устие</th>
+            <th>Размер шия</th>
+            <th>Размер тяло</th>
+            <th>Размер дъно</th>
+            <th>Височина съд</th>
+            <th>Тип дъно</th>
+            <th>Силует</th>
+            <th>Категория</th>
+            <th>Форма</th>
+            <th>Тип</th>
+            <th>Подтип</th>
+            <th>Вариант</th>
+            <th>Бележка</th>
+            <th>Инвентарен номер</th>
+            <th>Украса</th>
+            <th>Композиция</th>
+            <th>Паралели</th>
+            <th>Въведен от</th>
+          </tr>
+          {% for row in fragments %}
+          <tr>
+            <td>{{row.fragmentid}}</td>
+            <td>{{row.locationid}}</td>
+            <td>{{row.technology}}</td>
+            <td>{{row.speed}}</td>
+            <td>{{row.baking}}</td>
+            <td>{{row.fract}}</td>
+            <td>{{row.primarycolor}}</td>
+            <td>{{row.secondarycolor}}</td>
+            <td>{{row.covering}}</td>
+            <td>{{row.includesconc}}</td>
+            <td>{{row.includessize}}</td>
+            <td>{{row.includestype}}</td>
+            <td>{{row.surface}}</td>
+            <td>{{row.count}}</td>
+            <td>{{row.onepot}}</td>
+            <td>{{row.piecetype}}</td>
+            <td>{{row.wallthickness}}</td>
+            <td>{{row.handlesize}}</td>
+            <td>{{row.handletype}}</td>
+            <td>{{row.dishsize}}</td>
+            <td>{{row.topsize}}</td>
+            <td>{{row.necksize}}</td>
+            <td>{{row.bodysize}}</td>
+            <td>{{row.bottomsize}}</td>
+            <td>{{row.dishheight}}</td>
+            <td>{{row.bottomtype}}</td>
+            <td>{{row.outline}}</td>
+            <td>{{row.category}}</td>
+            <td>{{row.form}}</td>
+            <td>{{row.type}}</td>
+            <td>{{row.subtype}}</td>
+            <td>{{row.variant}}</td>
+            <td>{{row.note}}</td>
+            <td>{{row.inventory}}</td>
+            <td>{{row.decoration}}</td>
+            <td>{{row.composition}}</td>
+            <td>{{row.parallels}}</td>
+            <td>{{row.recordenteredby}}</td>
+            <td>
+              <!-- button to trigger editing of data to be loaded -->
+              <a href="{{ url_for('fragments_update', current_fragmentid=row.fragmentid) }}"
+                 class="btn btn-warning">Промяна</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% if prev_url %}
+<a href="{{ prev_url }}">По-нови фрагменти</a>
+{% endif %}
+{% if next_url %}
+<a href="{{ next_url }}">По-стари фрагменти</a>
+{% endif %}
+{% endblock %}
