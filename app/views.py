@@ -199,7 +199,7 @@ def fragments_add():
     update = None
     if request.method == 'POST' and flask_form_fragments.validate_on_submit():
         technology = flask_form_fragments.technology.data
-        speed = flask_form_fragments.speed.data
+        #speed = flask_form_fragments.speed.data
         baking = flask_form_fragments.baking.data
         fract = flask_form_fragments.fract.data
         primarycolor = flask_form_fragments.primarycolor.data
@@ -239,7 +239,7 @@ def fragments_add():
         location_id = Tbllayer.query.filter_by(recordenteredby=recordenteredby).order_by(
             Tbllayer.recordenteredon.desc()).first().__dict__['layerid']
         entry = flask_form_fragments.save_entry(
-            Tblfragment(location_id, technology, speed, baking, fract, primarycolor, secondarycolor, covering,
+            Tblfragment(location_id, technology, baking, fract, primarycolor, secondarycolor, covering,
                         includesconc, includessize, includestype, surface, count, onepot, piecetype,
                         wallthickness, handlesize, handletype, dishsize, topsize, necksize, bodysize,
                         bottomsize, dishheight, bottomtype, outline, category, form, type, subtype, variant,
@@ -271,7 +271,7 @@ def fragments_update(current_fragmentid):
     if request.method == 'POST':
         if flask_form.validate_on_submit():
             technology = flask_form.technology.data
-            speed = flask_form.speed.data
+            #speed = flask_form.speed.data
             baking = flask_form.baking.data
             fract = flask_form.fract.data
             primarycolor = flask_form.primarycolor.data
@@ -311,7 +311,7 @@ def fragments_update(current_fragmentid):
             fragment_record_to_update = Tblfragment.query.get_or_404(current_fragmentid)
             # update record fields with data from form
             fragment_record_to_update.technology = technology
-            fragment_record_to_update.speed = speed
+            #fragment_record_to_update.speed = speed
             fragment_record_to_update.baking = baking
             fragment_record_to_update.fract = fract
             fragment_record_to_update.primarycolor = primarycolor

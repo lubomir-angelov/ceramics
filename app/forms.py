@@ -54,12 +54,6 @@ class Technology(Enum):
         return self.value  # label string
 
 
-class Speed(FormEnum):
-    ONE = '1'
-    TWO = '2'
-    NO_SPEED = ''
-
-
 class Baking(FormEnum):
     EVEN = 'Р'
     UNEVEN = 'Н'
@@ -248,7 +242,7 @@ class AddLayerForm(FlaskForm):
 class AddFragmentForm(FlaskForm):
     #locationid = IntegerField('ID пласт', validators=[DataRequired()])
     technology = SelectField('Технология',  choices=[choice.value for choice in Technology])
-    speed = SelectField('Скорост', choices=[choice.value for choice in Speed])
+    #speed = SelectField('Скорост', choices=[choice.value for choice in Speed])
     baking = SelectField('Изпичане', choices=[choice.value for choice in Baking])
     fract = SelectField('Лом', choices=[choice.value for choice in Fracture])
     primarycolor = SelectField('Основен цвят', choices=[choice.value for choice in Color])

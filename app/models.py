@@ -251,7 +251,7 @@ class Tblfragment(db.Model):
         else:
             return value
     technology = Column(db.Enum('1', '2', '2А', '2Б', '', name='technology_type'))
-    speed = Column(db.Enum('1', '2', '', name='speed_type_'))
+    #speed = Column(db.Enum('1', '2', '', name='speed_type_'))
     baking = Column(db.Enum('Р', 'Н', '', name='baking_type_'))
     fract = Column(db.Enum('1', '2', '3', '', name='fract_type_'))
     primarycolor = Column(db.Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', '', name='primarycolor_type_'))
@@ -422,13 +422,12 @@ class Tblfragment(db.Model):
     #tbllayer = relationship('Tbllayer', back_populates='tblfragments')
     #tblornaments = relationship('Tblornament', back_populates='tblfragment')
 
-    def __init__(self, locationid, technology, speed, baking, fract, primarycolor, secondarycolor, covering, includesconc, includessize,
+    def __init__(self, locationid, technology, baking, fract, primarycolor, secondarycolor, covering, includesconc, includessize,
                  includestype, surface, count, onepot, piecetype, wallthickness, handlesize, handletype, dishsize, topsize,
                  necksize, bodysize, bottomsize, dishheight, bottomtype, outline, category, form, type, subtype, variant,
                  note, inventory, decoration, composition, parallels, recordenteredby):
         self.locationid = locationid
         self.technology = technology
-        self.speed = speed
         self.baking = baking
         self.fract = fract
         self.primarycolor = primarycolor
