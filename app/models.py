@@ -259,7 +259,7 @@ class Tblfragment(db.Model):
     covering = Column(db.Enum('да', 'не', 'Ф1', 'Ф2', '', name='covering_type_'))
     includesconc = Column(db.Enum('+', '-', '', name='includesconc_type_'))
     includessize = Column(db.Enum('М', 'С', 'Г', '', name='includessize_type_'))
-    includestype = Column(db.Enum('с', 'т', '', name='includestype_type_'))
+    #includestype = Column(db.Enum('с', 'т', '', name='includestype_type_'))
     surface = Column(db.Enum('А', 'Б', 'В', 'В1', 'В2', 'Г', '', name='surface_type_'))
     count = Column(Integer, nullable=False)
     onepot = Column(db.Enum('да', 'не', '', name='onepot_type'))
@@ -275,46 +275,46 @@ class Tblfragment(db.Model):
         else:
             return value
     dishsize = Column(db.Enum('М', 'С', 'Г', '', name='dishsize_type_'))
-    topsize = Column(Numeric(5, 2))
+    #topsize = Column(Numeric(5, 2))
 
-    @validates('topsize')
-    def empty_string_to_null(self, key, value):
-        if isinstance(value, str) and value == '':
-            return None
-        else:
-            return value
-    necksize = Column(Numeric(5, 2))
+    #@validates('topsize')
+    #def empty_string_to_null(self, key, value):
+        #if isinstance(value, str) and value == '':
+            #return None
+        #else:
+            #return value
+    #necksize = Column(Numeric(5, 2))
 
-    @validates('necksize')
-    def empty_string_to_null(self, key, value):
-        if isinstance(value, str) and value == '':
-            return None
-        else:
-            return value
-    bodysize = Column(Numeric(5, 2))
+    #@validates('necksize')
+    #def empty_string_to_null(self, key, value):
+        #if isinstance(value, str) and value == '':
+            #return None
+        #else:
+            #return value
+    #bodysize = Column(Numeric(5, 2))
 
-    @validates('bodysize')
-    def empty_string_to_null(self, key, value):
-        if isinstance(value, str) and value == '':
-            return None
-        else:
-            return value
-    bottomsize = Column(Numeric(5, 2))
+    #@validates('bodysize')
+    #def empty_string_to_null(self, key, value):
+        #if isinstance(value, str) and value == '':
+            #return None
+        #else:
+            #return value
+    #bottomsize = Column(Numeric(5, 2))
 
-    @validates('bottomsize')
-    def empty_string_to_null(self, key, value):
-        if isinstance(value, str) and value == '':
-            return None
-        else:
-            return value
-    dishheight = Column(Numeric(5, 2))
+    #@validates('bottomsize')
+    #def empty_string_to_null(self, key, value):
+        #if isinstance(value, str) and value == '':
+            #return None
+        #else:
+            #return value
+    #dishheight = Column(Numeric(5, 2))
 
-    @validates('dishheight')
-    def empty_string_to_null(self, key, value):
-        if isinstance(value, str) and value == '':
-            return None
-        else:
-            return value
+    #@validates('dishheight')
+    #def empty_string_to_null(self, key, value):
+        #if isinstance(value, str) and value == '':
+            #return None
+        #else:
+            #return value
     bottomtype = Column(db.Enum('А', 'Б', 'В', 'А1', 'А2', 'Б1', 'Б2', 'В1', 'В2', '',  name='bottomtype_type_'))
     outline = Column(db.Enum('1', '2', '3', '', name='outline_typee'))
     category = Column(String(5))
@@ -373,38 +373,38 @@ class Tblfragment(db.Model):
             return None
         else:
             return value
-    decoration = Column(Text)
+    #decoration = Column(Text)
 
-    @validates('decoration')
-    def empty_string_to_null(self, key, value):
-        if isinstance(value, str) and value == '':
-            return None
-        else:
-            return value
-    composition = Column(Text)
+    #@validates('decoration')
+    #def empty_string_to_null(self, key, value):
+        #if isinstance(value, str) and value == '':
+            #return None
+        #else:
+            #return value
+    #composition = Column(Text)
 
-    @validates('composition')
-    def empty_string_to_null(self, key, value):
-        if isinstance(value, str) and value == '':
-            return None
-        else:
-            return value
-    parallels = Column(Text)
+    #@validates('composition')
+    #def empty_string_to_null(self, key, value):
+        #if isinstance(value, str) and value == '':
+            #return None
+        #else:
+            #return value
+    #parallels = Column(Text)
 
-    @validates('parallels')
-    def empty_string_to_null(self, key, value):
-        if isinstance(value, str) and value == '':
-            return None
-        else:
-            return value
-    image = Column(LargeBinary)
+    #@validates('parallels')
+    #def empty_string_to_null(self, key, value):
+        #if isinstance(value, str) and value == '':
+            #return None
+        #else:
+            #return value
+    #image = Column(LargeBinary)
 
-    @validates('image')
-    def empty_string_to_null(self, key, value):
-        if isinstance(value, str) and value == '':
-            return None
-        else:
-            return value
+    #@validates('image')
+    #def empty_string_to_null(self, key, value):
+        #if isinstance(value, str) and value == '':
+            #return None
+        #else:
+            #return value
     recordenteredby = Column(Text)
 
     @validates('recordenteredby')
@@ -422,10 +422,10 @@ class Tblfragment(db.Model):
     #tbllayer = relationship('Tbllayer', back_populates='tblfragments')
     #tblornaments = relationship('Tblornament', back_populates='tblfragment')
 
-    def __init__(self, locationid, technology, baking, fract, primarycolor, secondarycolor, covering, includesconc, includessize,
-                 includestype, surface, count, onepot, piecetype, wallthickness, handlesize, handletype, dishsize, topsize,
-                 necksize, bodysize, bottomsize, dishheight, bottomtype, outline, category, form, type, subtype, variant,
-                 note, inventory, decoration, composition, parallels, recordenteredby):
+    def __init__(self, locationid, technology, baking, fract, primarycolor, secondarycolor, covering, includesconc, includessize
+                 , surface, count, onepot, piecetype, wallthickness, handlesize, handletype, dishsize,
+                    bottomtype, outline, category, form, type, subtype, variant,
+                 note, inventory, recordenteredby):
         self.locationid = locationid
         self.technology = technology
         self.baking = baking
@@ -435,7 +435,7 @@ class Tblfragment(db.Model):
         self.covering = covering
         self.includesconc = includesconc
         self.includessize = includessize
-        self.includestype = includestype
+        #self.includestype = includestype
         self.surface = surface
         self.count = count
         self.onepot = onepot
@@ -444,11 +444,11 @@ class Tblfragment(db.Model):
         self.handlesize = handlesize
         self.handletype = handletype
         self.dishsize = dishsize
-        self.topsize = topsize
-        self.necksize = necksize
-        self.bodysize = bodysize
-        self.bottomsize = bottomsize
-        self.dishheight = dishheight
+        #self.topsize = topsize
+        #self.necksize = necksize
+        #self.bodysize = bodysize
+        #self.bottomsize = bottomsize
+        #self.dishheight = dishheight
         self.bottomtype = bottomtype
         self.outline = outline
         self.category = category
@@ -458,9 +458,9 @@ class Tblfragment(db.Model):
         self.variant = variant
         self.note = note
         self.inventory = inventory
-        self.decoration = decoration
-        self.composition = composition
-        self.parallels = parallels
+        #self.decoration = decoration
+        #self.composition = composition
+        #self.parallels = parallels
         self.recordenteredby = recordenteredby
 
         # some comment

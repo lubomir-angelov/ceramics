@@ -279,7 +279,7 @@ def fragments_update(current_fragmentid):
             covering = flask_form.covering.data
             includesconc = flask_form.includesconc.data
             includessize = flask_form.includessize.data
-            includestype = flask_form.includestype.data
+            #includestype = flask_form.includestype.data
             surface = flask_form.surface.data
             count = flask_form.count.data
             onepot = flask_form.onepot.data
@@ -288,11 +288,11 @@ def fragments_update(current_fragmentid):
             handlesize = flask_form.handlesize.data
             handletype = flask_form.handletype.data
             dishsize = flask_form.dishsize.data
-            topsize = flask_form.topsize.data
-            necksize = flask_form.necksize.data
-            bodysize = flask_form.bodysize.data
-            bottomsize = flask_form.bottomsize.data
-            dishheight = flask_form.dishheight.data
+            #topsize = flask_form.topsize.data
+            #necksize = flask_form.necksize.data
+            #bodysize = flask_form.bodysize.data
+            #bottomsize = flask_form.bottomsize.data
+            #dishheight = flask_form.dishheight.data
             bottomtype = flask_form.bottomtype.data
             outline = flask_form.outline.data
             category = flask_form.category.data
@@ -302,9 +302,9 @@ def fragments_update(current_fragmentid):
             variant = flask_form.variant.data
             note = flask_form.note.data
             inventory = flask_form.inventory.data
-            decoration = flask_form.decoration.data
-            composition = flask_form.composition.data
-            parallels = flask_form.parallels.data
+            #decoration = flask_form.decoration.data
+            #composition = flask_form.composition.data
+            #parallels = flask_form.parallels.data
             recordenteredby = flask_form.recordenteredby.data
 
             # get current record
@@ -319,7 +319,7 @@ def fragments_update(current_fragmentid):
             fragment_record_to_update.covering = covering
             fragment_record_to_update.includesconc = includesconc
             fragment_record_to_update.includessize = includessize
-            fragment_record_to_update.includestype = includestype
+            #fragment_record_to_update.includestype = includestype
             fragment_record_to_update.surface = surface
             fragment_record_to_update.count = count
             fragment_record_to_update.onepot = onepot
@@ -328,11 +328,11 @@ def fragments_update(current_fragmentid):
             fragment_record_to_update.handlesize = handlesize
             fragment_record_to_update.handletype = handletype
             fragment_record_to_update.dishsize = dishsize
-            fragment_record_to_update.topsize = topsize
-            fragment_record_to_update.necksize = necksize
-            fragment_record_to_update.bodysize = bodysize
-            fragment_record_to_update.bottomsize = bottomsize
-            fragment_record_to_update.dishheight = dishheight
+            #fragment_record_to_update.topsize = topsize
+            #fragment_record_to_update.necksize = necksize
+            #fragment_record_to_update.bodysize = bodysize
+            #fragment_record_to_update.bottomsize = bottomsize
+            #fragment_record_to_update.dishheight = dishheight
             fragment_record_to_update.bottomtype = bottomtype
             fragment_record_to_update.outline = outline
             fragment_record_to_update.category = category
@@ -342,9 +342,9 @@ def fragments_update(current_fragmentid):
             fragment_record_to_update.variant = variant
             fragment_record_to_update.note = note
             fragment_record_to_update.inventory = inventory
-            fragment_record_to_update.decoration = decoration
-            fragment_record_to_update.composition = composition
-            fragment_record_to_update.parallels = parallels
+            #fragment_record_to_update.decoration = decoration
+            #fragment_record_to_update.composition = composition
+            #fragment_record_to_update.parallels = parallels
             fragment_record_to_update.recordenteredby = recordenteredby
             try:
                 # push updates
@@ -367,11 +367,11 @@ def fragments_update(current_fragmentid):
         current_fragment_data = Tblfragment.query.get_or_404(current_fragmentid)
         flask_form.count.data = current_fragment_data.count
         flask_form.handletype.data = current_fragment_data.handletype
-        flask_form.topsize.data = current_fragment_data.topsize
-        flask_form.necksize.data = current_fragment_data.necksize
-        flask_form.bodysize.data = current_fragment_data.bodysize
-        flask_form.bottomsize.data = current_fragment_data.bottomsize
-        flask_form.dishheight.data = current_fragment_data.dishheight
+        #flask_form.topsize.data = current_fragment_data.topsize
+        #flask_form.necksize.data = current_fragment_data.necksize
+        #flask_form.bodysize.data = current_fragment_data.bodysize
+        #flask_form.bottomsize.data = current_fragment_data.bottomsize
+        #flask_form.dishheight.data = current_fragment_data.dishheight
         flask_form.category.data = current_fragment_data.category
         flask_form.form.data = current_fragment_data.form
         flask_form.type.data = current_fragment_data.type
@@ -379,9 +379,9 @@ def fragments_update(current_fragmentid):
         flask_form.variant.data = current_fragment_data.variant
         flask_form.note.data = current_fragment_data.note
         flask_form.inventory.data = current_fragment_data.inventory
-        flask_form.decoration.data = current_fragment_data.decoration
-        flask_form.composition.data = current_fragment_data.composition
-        flask_form.parallels.data = current_fragment_data.parallels
+        #flask_form.decoration.data = current_fragment_data.decoration
+        #flask_form.composition.data = current_fragment_data.composition
+        #flask_form.parallels.data = current_fragment_data.parallels
         flask_form.recordenteredby.data = current_fragment_data.recordenteredby
 
         return render_template('fragment.html', form=flask_form, update=update)
