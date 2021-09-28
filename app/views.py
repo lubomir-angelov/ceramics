@@ -207,20 +207,20 @@ def fragments_add():
         covering = flask_form_fragments.covering.data
         includesconc = flask_form_fragments.includesconc.data
         includessize = flask_form_fragments.includessize.data
-        includestype = flask_form_fragments.includestype.data
+        #includestype = flask_form_fragments.includestype.data
         surface = flask_form_fragments.surface.data
         count = flask_form_fragments.count.data
         onepot = flask_form_fragments.onepot.data
         piecetype = flask_form_fragments.piecetype.data
         wallthickness = flask_form_fragments.wallthickness.data
-        handlesize = flask_form_fragments.handlesize.data
+        #handlesize = flask_form_fragments.handlesize.data
         handletype = flask_form_fragments.handletype.data
         dishsize = flask_form_fragments.dishsize.data
-        topsize = flask_form_fragments.topsize.data
-        necksize = flask_form_fragments.necksize.data
-        bodysize = flask_form_fragments.bodysize.data
-        bottomsize = flask_form_fragments.bottomsize.data
-        dishheight = flask_form_fragments.dishheight.data
+        #topsize = flask_form_fragments.topsize.data
+        #necksize = flask_form_fragments.necksize.data
+        #bodysize = flask_form_fragments.bodysize.data
+        #bottomsize = flask_form_fragments.bottomsize.data
+        #dishheight = flask_form_fragments.dishheight.data
         bottomtype = flask_form_fragments.bottomtype.data
         outline = flask_form_fragments.outline.data
         category = flask_form_fragments.category.data
@@ -230,9 +230,9 @@ def fragments_add():
         variant = flask_form_fragments.variant.data
         note= flask_form_fragments.note.data
         inventory = flask_form_fragments.inventory.data
-        decoration = flask_form_fragments.decoration.data
-        composition = flask_form_fragments.composition.data
-        parallels = flask_form_fragments.parallels.data
+        #decoration = flask_form_fragments.decoration.data
+        #composition = flask_form_fragments.composition.data
+        #parallels = flask_form_fragments.parallels.data
         recordenteredby = flask_form_fragments.recordenteredby.data
 
         # get layerid from Tbllayers to add as location id
@@ -240,10 +240,10 @@ def fragments_add():
             Tbllayer.recordenteredon.desc()).first().__dict__['layerid']
         entry = flask_form_fragments.save_entry(
             Tblfragment(location_id, technology, baking, fract, primarycolor, secondarycolor, covering,
-                        includesconc, includessize, includestype, surface, count, onepot, piecetype,
-                        wallthickness, handlesize, handletype, dishsize, topsize, necksize, bodysize,
-                        bottomsize, dishheight, bottomtype, outline, category, form, type, subtype, variant,
-                        note, inventory, decoration, composition, parallels, recordenteredby))
+                        includesconc, includessize, surface, count, onepot, piecetype,
+                        wallthickness, handletype, dishsize,
+                        bottomtype, outline, category, form, type, subtype, variant,
+                        note, inventory, recordenteredby))
         db.session.add(entry)
         try:
             db.session.commit()
@@ -285,7 +285,7 @@ def fragments_update(current_fragmentid):
             onepot = flask_form.onepot.data
             piecetype = flask_form.piecetype.data
             wallthickness = flask_form.wallthickness.data
-            handlesize = flask_form.handlesize.data
+            #handlesize = flask_form.handlesize.data
             handletype = flask_form.handletype.data
             dishsize = flask_form.dishsize.data
             #topsize = flask_form.topsize.data
@@ -325,7 +325,7 @@ def fragments_update(current_fragmentid):
             fragment_record_to_update.onepot = onepot
             fragment_record_to_update.piecetype = piecetype
             fragment_record_to_update.wallthickness = wallthickness
-            fragment_record_to_update.handlesize = handlesize
+            #fragment_record_to_update.handlesize = handlesize
             fragment_record_to_update.handletype = handletype
             fragment_record_to_update.dishsize = dishsize
             #fragment_record_to_update.topsize = topsize

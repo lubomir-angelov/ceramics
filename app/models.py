@@ -423,7 +423,7 @@ class Tblfragment(db.Model):
     #tblornaments = relationship('Tblornament', back_populates='tblfragment')
 
     def __init__(self, locationid, technology, baking, fract, primarycolor, secondarycolor, covering, includesconc, includessize
-                 , surface, count, onepot, piecetype, wallthickness, handlesize, handletype, dishsize,
+                 , surface, count, onepot, piecetype, wallthickness, handletype, dishsize,
                     bottomtype, outline, category, form, type, subtype, variant,
                  note, inventory, recordenteredby):
         self.locationid = locationid
@@ -441,7 +441,7 @@ class Tblfragment(db.Model):
         self.onepot = onepot
         self.piecetype = piecetype
         self.wallthickness = wallthickness
-        self.handlesize = handlesize
+        #self.handlesize = handlesize
         self.handletype = handletype
         self.dishsize = dishsize
         #self.topsize = topsize

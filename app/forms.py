@@ -260,7 +260,7 @@ class AddFragmentForm(FlaskForm):
     wallthickness = SelectField('Дебелина на стената', choices=[choice.value for choice in SizeShort])
     dishsize = SelectField('Размер на съда', choices=[choice.value for choice in SizeShort])
     handletype = StringField('Тип дръжка')
-    handlesize = SelectField('Размер на дръжката', choices=[choice.value for choice in SizeShort])
+    #handlesize = SelectField('Размер на дръжката', choices=[choice.value for choice in SizeShort])
     bottomtype = SelectField('Тип дъно', choices=[choice.value for choice in BottomType])
     outline = SelectField('Силует', choices=[choice.value for choice in Fracture])
     #includestype = SelectField('Тип примеси', choices=[choice.value for choice in IncludesType])
