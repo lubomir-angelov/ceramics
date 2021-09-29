@@ -674,7 +674,7 @@ class Tblornament(db.Model):
     primary_ = Column(db.Enum('А', 'В', 'Д', 'И', 'К', 'Н', 'П', 'Р', 'Ф', 'Ц', 'Щ', '', name='primary_type_'))
     secondary = Column(db.Enum('I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI',
                                'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', ''))
-    tertiary = Column(db.Enum('А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'К', 'Л', 'М', 'П', 'А1', 'А2', 'Б1', 'Б2' '', name='tertiary_type_'))
+    tertiary = Column(db.Enum('А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'К', 'Л', 'М', 'П', 'А1', 'А2', 'Б1', 'Б2', '', name='tertiary_type_'))
     quarternary = Column(Integer)
     recordenteredon = Column(Date, nullable=False, server_default=text("CURRENT_TIMESTAMP"))
 
