@@ -303,7 +303,7 @@ class AddOrnamentForm(FlaskForm):
     primary_ = SelectField('Украса', choices=[choice.value for choice in Primary_])
     secondary = SelectField('Орнамент', choices=[choice.value for choice in Secondary])
     tertiary = SelectField('Комбинация', choices=[choice.value for choice in Tertiary])
-    quarternary = IntegerField('Мотив')
+    quarternary = IntegerField('Мотив', default=0)
 
     def save_entry(self, entry):
         self.populate_obj(entry)
