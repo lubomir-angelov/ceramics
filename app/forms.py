@@ -114,8 +114,6 @@ class Surface(FormEnum):
 class OneDish(FormEnum):
     YES = 'да'
     NO = 'не'
-    MANY = ''
-
 
 class PieceType(FormEnum):
     RIM = 'устие'
