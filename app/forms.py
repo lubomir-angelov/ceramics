@@ -79,7 +79,7 @@ class Fracture(FormEnum):
     THREE_LAYER = '3'
     NO_LAYER = ''
 
-class Fracture2(FormEnum):
+class Outline(FormEnum):
     MONOLAYER = '1'
     TWO_LAYER = '2'
     THREE_LAYER = '3'
@@ -279,7 +279,7 @@ class AddFragmentForm(FlaskForm):
     handletype = StringField('Тип дръжка')
     #handlesize = SelectField('Размер на дръжката', choices=[choice.value for choice in SizeShort])
     bottomtype = SelectField('Тип дъно', choices=[choice.value for choice in BottomType])
-    outline = SelectField('Силует', choices=[choice.value for choice in Fracture2])
+    outline = SelectField('Силует', choices=[choice.value for choice in Outline])
     #includestype = SelectField('Тип примеси', choices=[choice.value for choice in IncludesType])
     count = IntegerField('Брой', validators=[DataRequired()])
     onepot = SelectField('Цял съд', choices=[choice.value for choice in OneDish])
@@ -315,8 +315,8 @@ class AddLayerIncludeForm(FlaskForm):
 class AddOrnamentForm(FlaskForm):
     fragmentid = IntegerField('ID фрагмент', validators=[DataRequired()])
     location = StringField('Положение')
-    color1 = SelectField('Цвят1', choices=[choice.value for choice in Color])
-    color2 = SelectField('Цвят2', choices=[choice.value for choice in Color])
+    #color1 = SelectField('Цвят1', choices=[choice.value for choice in Color])
+    #color2 = SelectField('Цвят2', choices=[choice.value for choice in Color])
     encrustcolor1 = StringField('Инкрустация цвят1')
     encrustcolor2 = StringField('Инкрустация цвят2')
     primary_ = SelectField('Украса', choices=[choice.value for choice in Primary_])
