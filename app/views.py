@@ -359,6 +359,7 @@ def fragments_update(current_fragmentid):
         flask_form.fract.data = current_fragment_data.fract
         flask_form.includessize.data = current_fragment_data.includessize
         flask_form.includesconc.data = current_fragment_data.includesconc
+        flask_form.surface.data = current_fragment_data.surface
         flask_form.covering.data = current_fragment_data.covering
         flask_form.primarycolor.data = current_fragment_data.primarycolor
         flask_form.secondarycolor.data = current_fragment_data.secondarycolor
@@ -367,6 +368,7 @@ def fragments_update(current_fragmentid):
         flask_form.type.data = current_fragment_data.type
         flask_form.subtype.data = current_fragment_data.subtype
         flask_form.variant.data = current_fragment_data.variant
+        flask_form.piecetype.data = current_fragment_data.piecetype
         flask_form.wallthickness.data = current_fragment_data.wallthickness
         flask_form.dishsize.data = current_fragment_data.dishsize
         flask_form.handletype.data = current_fragment_data.handletype
