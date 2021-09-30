@@ -80,10 +80,10 @@ class Fracture(FormEnum):
     NO_LAYER = ''
 
 class Outline(FormEnum):
+    NO_LAYER = ''
     MONOLAYER = '1'
     TWO_LAYER = '2'
     THREE_LAYER = '3'
-    NO_LAYER = ''
 
 
 class Covering(FormEnum):
@@ -101,17 +101,17 @@ class IncludesConcentration(FormEnum):
 
 
 class SizeShort(FormEnum):
+    NONE = ''
     SMALL = 'М'
     MEDIUM = 'С'
     LARGE = 'Г'
-    NONE = ''
 
 
 class SizeLong(FormEnum):
+    NONE = ''
     SMALL = 'малки'
     MEDIUM = 'средни'
     LARGE = 'големи'
-    NONE = ''
 
 
 class IncludesType(FormEnum):
@@ -332,7 +332,7 @@ class AddOrnamentForm(FlaskForm):
 class AddPokForm(FlaskForm):
     locationid = IntegerField('ID пласт', validators=[DataRequired()])
     type = StringField('Тип')
-    quantity = IntegerField('Количество (бр.)')
+    quantity = IntegerField('Количество (бр.)', default=0)
     weight = DecimalField('Килограми ПОК', places=3, default=0.0)
     sok_weight = DecimalField('Килограми СОК', places=3, default=0.0)
 
