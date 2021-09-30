@@ -101,10 +101,10 @@ class IncludesConcentration(FormEnum):
 
 
 class SizeShort(FormEnum):
-    NONE = ''
     SMALL = 'М'
     MEDIUM = 'С'
     LARGE = 'Г'
+    NONE = ''
 
 
 class SizeLong(FormEnum):
