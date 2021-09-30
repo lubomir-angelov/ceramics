@@ -516,15 +516,15 @@ def ornaments_add():
             fragmentid = fragment_id
             # get values from form
             location = flask_form.location.data
-            color1 = flask_form.color1.data
-            color2 = flask_form.color2.data
+            #color1 = flask_form.color1.data
+            #color2 = flask_form.color2.data
             encrustcolor1 = flask_form.encrustcolor1.data
             encrustcolor2 = flask_form.encrustcolor2.data
             primary_ = flask_form.primary_.data
             secondary = flask_form.secondary.data
             tertiary = flask_form.tertiary.data
             quarternary = flask_form.quarternary.data
-            entry = flask_form.save_entry(models.Tblornament(fragmentid, location, color1, color2,
+            entry = flask_form.save_entry(models.Tblornament(fragmentid, location,
                                                              encrustcolor1, encrustcolor2, primary_, secondary,
                                                              tertiary, quarternary))
             db.session.add(entry)
@@ -555,8 +555,8 @@ def ornaments_update(current_ornamentid):
         if flask_form.validate_on_submit():
             fragmentid = flask_form.fragmentid.data
             location = flask_form.location.data
-            color1 = flask_form.color1.data
-            color2 = flask_form.color2.data
+            #color1 = flask_form.color1.data
+            #color2 = flask_form.color2.data
             encrustcolor1 = flask_form.encrustcolor1.data
             encrustcolor2 = flask_form.encrustcolor2.data
             primary_ = flask_form.primary_.data
@@ -568,8 +568,8 @@ def ornaments_update(current_ornamentid):
             # update record with data from form
             ornament_record_to_update.fragmentid = fragmentid
             ornament_record_to_update.location = location
-            ornament_record_to_update.color1 = color1
-            ornament_record_to_update.color2 = color2
+            #ornament_record_to_update.color1 = color1
+            #ornament_record_to_update.color2 = color2
             ornament_record_to_update.encrustcolor1 = encrustcolor1
             ornament_record_to_update.encrustcolor2 = encrustcolor2
             ornament_record_to_update.primary_ = primary_
@@ -592,8 +592,8 @@ def ornaments_update(current_ornamentid):
         current_ornament_data = Tblornament.query.get_or_404(current_ornamentid)
         flask_form.fragmentid.data = current_ornament_data.fragmentid
         flask_form.location.data = current_ornament_data.location
-        flask_form.color1.data = current_ornament_data.color1
-        flask_form.color2.data = current_ornament_data.color2
+        #flask_form.color1.data = current_ornament_data.color1
+        #flask_form.color2.data = current_ornament_data.color2
         flask_form.encrustcolor1.data = current_ornament_data.encrustcolor1
         flask_form.encrustcolor2.data = current_ornament_data.encrustcolor2
         flask_form.primary_.data = current_ornament_data.primary_

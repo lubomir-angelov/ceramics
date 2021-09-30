@@ -652,8 +652,8 @@ class Tblornament(db.Model):
             return None
         else:
             return value
-    color1 = Column(db.Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', '', name='color1_type'))
-    color2 = Column(db.Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', '', name='color2_type'))
+    #color1 = Column(db.Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', '', name='color1_type'))
+    #color2 = Column(db.Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', '', name='color2_type'))
     encrustcolor1 = Column(String(10))
 
     @validates('encrustcolor1')
@@ -682,7 +682,7 @@ class Tblornament(db.Model):
     # TODO: fix replationships
     #tblfragment = relationship('Tblfragment', back_populates='tblfragments')
 
-    def __init__(self, fragmentid, location, color1, color2, encrustcolor1,
+    def __init__(self, fragmentid, location, encrustcolor1,
                  encrustcolor2, primary_, secondary, tertiary, quarternary):
         self.fragmentid = fragmentid
         self.location = location
@@ -690,8 +690,8 @@ class Tblornament(db.Model):
         # TO REMOVE self.relationship = relationship
         # TO REMOVE self.onornament = onornament
 
-        self.color1 = color1
-        self.color2 = color2
+        #self.color1 = color1
+        #self.color2 = color2
         self.encrustcolor1 = encrustcolor1
         self.encrustcolor2 = encrustcolor2
         self.primary_ = primary_
@@ -707,8 +707,8 @@ class Tblornament(db.Model):
             'ornamentid': self.ornamentid,
             'fragmentid': self.fragmentid,
             'location': self.location,
-            'color1': self.color1,
-            'color2': self.color2,
+            #'color1': self.color1,
+            #'color2': self.color2,
             'encrustcolor1': self.encrustcolor1,
             'encrustcolor2': self.encrustcolor2,
             'primary_': self.primary_,

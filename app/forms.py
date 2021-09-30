@@ -39,6 +39,19 @@ class Color(FormEnum):
     BLACK = 'черен'
     NONE = ''
 
+class Color2(FormEnum):
+    NONE = ''
+    WHITE = 'бял'
+    YELLOW = 'жълт'
+    OCHER = 'охра'
+    RED = 'червен'
+    GRAY = 'сив'
+    DARK_GRAY = 'тъмносив'
+    BROWN = 'кафяв'
+    PALE_BROWN = 'светлокафяв'
+    DARK_BROWN = 'тъмнокафяв'
+    BLACK = 'черен'
+
 
 class Technology(Enum):
     ONE = '1'
@@ -61,6 +74,12 @@ class Baking(FormEnum):
 
 
 class Fracture(FormEnum):
+    MONOLAYER = '1'
+    TWO_LAYER = '2'
+    THREE_LAYER = '3'
+    NO_LAYER = ''
+
+class Fracture2(FormEnum):
     MONOLAYER = '1'
     TWO_LAYER = '2'
     THREE_LAYER = '3'
@@ -112,8 +131,8 @@ class Surface(FormEnum):
 
 
 class OneDish(FormEnum):
-    YES = 'да'
     NO = 'не'
+    YES = 'да'
 
 class PieceType(FormEnum):
     RIM = 'устие'
@@ -134,6 +153,7 @@ class PieceType(FormEnum):
 
 
 class BottomType(FormEnum):
+    NO_BOTTOM = ''
     THICK = 'А'
     LOW_CHAIR = 'Б'
     HIGH_CHAIR = 'В'
@@ -143,7 +163,6 @@ class BottomType(FormEnum):
     THICK_UNPROFILED = 'Б2'
     HIGH_HOLLOW_CHAIR = 'В1'
     LOW_CHAIR_HAND = 'В2'
-    NO_BOTTOM = ''
 
 
 class IncludeType(FormEnum):
@@ -248,7 +267,7 @@ class AddFragmentForm(FlaskForm):
     surface = SelectField('Повърхност', choices=[choice.value for choice in Surface])
     covering = SelectField('Покритие', choices=[choice.value for choice in Covering])
     primarycolor = SelectField('Основен цвят', choices=[choice.value for choice in Color])
-    secondarycolor = SelectField('Вторичен цвят', choices=[choice.value for choice in Color])
+    secondarycolor = SelectField('Вторичен цвят', choices=[choice.value for choice in Color2])
     category = StringField('Категория')
     form = StringField('Форма')
     type = IntegerField('Тип', default=0)
@@ -260,7 +279,7 @@ class AddFragmentForm(FlaskForm):
     handletype = StringField('Тип дръжка')
     #handlesize = SelectField('Размер на дръжката', choices=[choice.value for choice in SizeShort])
     bottomtype = SelectField('Тип дъно', choices=[choice.value for choice in BottomType])
-    outline = SelectField('Силует', choices=[choice.value for choice in Fracture])
+    outline = SelectField('Силует', choices=[choice.value for choice in Fracture2])
     #includestype = SelectField('Тип примеси', choices=[choice.value for choice in IncludesType])
     count = IntegerField('Брой', validators=[DataRequired()])
     onepot = SelectField('Цял съд', choices=[choice.value for choice in OneDish])
