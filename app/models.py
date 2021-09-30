@@ -316,7 +316,7 @@ class Tblfragment(db.Model):
         #else:
             #return value
     bottomtype = Column(db.Enum('А', 'Б', 'В', 'А1', 'А2', 'Б1', 'Б2', 'В1', 'В2', '',  name='bottomtype_type_'))
-    outline = Column(db.Enum('1', '2', '3', '', name='outline_typee'))
+    outline = Column(db.Enum('', '1', '2', '3', name='outline_typee'))
     category = Column(String(5))
 
     @validates('category')
