@@ -6,7 +6,7 @@
     <div class="col-xs-6">
       <div class="table-responsive">
           <div class="text-center">
-            <h2>Примеси</h2>
+            <h2>Антропогенни примеси</h2>
           </div>
         <!-- button to open the form -->
         <h2><a class="btn btn-success"
@@ -17,7 +17,7 @@
            <th>ID примес</th>
            <th>ID пласт</th>
            <th>Тип</th>
-           <th>Текстура</th>
+           <th>Вид примес</th>
            <th>Размер</th>
            <th>Концентрация</th>
           </tr>
@@ -42,9 +42,9 @@
   </div>
 </div>
 {% if prev_url %}
-<a href="{{ prev_url }}">По-нови пластови примеси</a>
+<a href="{{ prev_url }}">По-нови примеси</a>
 {% endif %}
 {% if next_url %}
-<a href="{{ next_url }}">По-стари пластови примеси</a>
+<a href="{{ next_url }}">По-стари примеси</a>
 {% endif %}
 {% endblock %}

@@ -458,7 +458,7 @@ def layer_includes_update(current_includeid):
             layer_includes_record_to_update.includeconc = includeconc
             try:
                 db.session.commit()
-                if request.form.to_dict()['action'] == 'ДОБАВИ ПРИМЕСИ':
+                if request.form.to_dict()['action'] == 'ДОБАВИ АНТРОПОГЕННИ ПРИМЕСИ':
                     return redirect(url_for('layer_includes'))
                 if request.form.to_dict()['action'] == 'ДОБАВИ ПОК':
                     pok_id = Tblpok.query.filter_by(locationid=locationid).first().__dict__['pokid']

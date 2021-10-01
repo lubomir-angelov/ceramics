@@ -230,10 +230,10 @@ class Tertiary(FormEnum):
 
 #includeconc = Column(db.Enum('ниска', 'средна', 'висока', '', name='includeconc_type'))
 class Includeconc(FormEnum):
+    Empty_conc = ''
     Low_conc = 'ниска'
     Medium_conc = 'средна'
     High_conc = 'висока'
-    Empty_conc = ''
 
 class AddLayerForm(FlaskForm):
     site = StringField('Обект', validators=[DataRequired()])
