@@ -91,7 +91,7 @@ class Covering(FormEnum):
     NO = 'не'
     BLACK_FIRNIS = 'Ф1'
     BROWN_FIRNIS = 'Ф2'
-    SOME = 'Б'
+
 
     NO_COVERING = ''
 
