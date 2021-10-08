@@ -179,7 +179,7 @@ def layers_update(current_layerid):
 def fragments():
     page = request.args.get('page', 1, type=int)
     all_data = Tblfragment.query.order_by(Tblfragment.recordenteredon.desc()).paginate(page=page,
-                                                                                       per_page=8,
+                                                                                       per_page=6,
                                                                                        error_out=False)
     next_url = url_for('fragments', page=all_data.next_num) \
         if all_data.has_next else None

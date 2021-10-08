@@ -92,7 +92,6 @@ class Covering(FormEnum):
     BLACK_FIRNIS = 'Ф1'
     BROWN_FIRNIS = 'Ф2'
 
-
     NO_COVERING = ''
 
 
