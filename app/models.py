@@ -256,7 +256,7 @@ class Tblfragment(db.Model):
     fract = Column(db.Enum('1', '2', '3', '', name='fract_type_'))
     primarycolor = Column(db.Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', '', name='primarycolor_type_'))
     secondarycolor = Column(db.Enum('бял', 'жълт', 'охра', 'червен', 'сив', 'тъмносив', 'кафяв', 'светлокафяв', 'тъмнокафяв', 'черен', '', name='secondarycolor_type_'))
-    covering = Column(db.Enum('да', 'не', 'Ф1', 'Ф2', '', name='covering_type_'))
+    covering = Column(db.Enum('да', 'не', 'Ф1', 'Ф2', '', 'Б', 'Г', name='covering'))
     includesconc = Column(db.Enum('+', '-', '', name='includesconc_type_'))
     includessize = Column(db.Enum('М', 'С', 'Г', '', name='includessize_type_'))
     #includestype = Column(db.Enum('с', 'т', '', name='includestype_type_'))
