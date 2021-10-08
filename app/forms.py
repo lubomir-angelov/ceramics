@@ -108,6 +108,13 @@ class SizeShort(FormEnum):
     NONE = ''
 
 
+class SizeShort2(FormEnum):
+    SMALL = 'М'
+    MEDIUM = 'С'
+    LARGE = 'Г'
+    NONE = ''
+
+
 class SizeLong(FormEnum):
     NONE = ''
     SMALL = 'малки'
@@ -263,7 +270,7 @@ class AddFragmentForm(FlaskForm):
     #speed = SelectField('Скорост', choices=[choice.value for choice in Speed])
     baking = SelectField('Изпичане', choices=[choice.value for choice in Baking])
     fract = SelectField('Лом', choices=[choice.value for choice in Fracture])
-    includessize = SelectField('Размер примеси', choices=[choice.value for choice in SizeShort])
+    includessize = SelectField('Размер примеси', choices=[choice.value for choice in SizeShort2])
     includesconc = SelectField('Концентрация примеси', choices=[choice.value for choice in IncludesConcentration])
     surface = SelectField('Повърхност', choices=[choice.value for choice in Surface])
     covering = SelectField('Покритие', choices=[choice.value for choice in Covering])
