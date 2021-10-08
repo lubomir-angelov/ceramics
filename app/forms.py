@@ -102,8 +102,8 @@ class IncludesConcentration(FormEnum):
 
 
 class SizeShort(FormEnum):
-    SMALL = 'М'
     MEDIUM = 'С'
+    SMALL = 'М'
     LARGE = 'Г'
     NONE = ''
 
