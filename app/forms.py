@@ -91,9 +91,9 @@ class Covering(FormEnum):
     NO = 'не'
     BLACK_FIRNIS = 'Ф1'
     BROWN_FIRNIS = 'Ф2'
-    NO_COVERING = ''
     COV_B = 'Б'
     COV_G = 'Г'
+    NO_COVERING = ''
 
 class IncludesConcentration(FormEnum):
     HIGH = '+'
