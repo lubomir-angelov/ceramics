@@ -143,8 +143,8 @@ class OneDish(FormEnum):
     YES = 'да'
 
 class PieceType(FormEnum):
-    RIM = 'устие'
     WALL = 'стена'
+    RIM = 'устие'
     HANDLE = 'дръжка'
     BOTTOM = 'дъно'
     PROFILE = 'профил'
