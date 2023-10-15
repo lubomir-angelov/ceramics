@@ -249,7 +249,7 @@ def fragments_add():
             db.session.commit()
             # get the fragment id of the new record
             fragment_id = Tblfragment.query.filter_by(recordenteredby=recordenteredby).order_by(
-                Tblfragment.fragmentid.desc()).first().__dict__['fragmentid']
+                Tblfragment.recordenteredon.desc()).first().__dict__['fragmentid']
             if request.form.to_dict()['action'] == 'ДОБАВИ ФРАГМЕНТИ':
                 return redirect(url_for('fragments'))
             if request.form.to_dict()['action'] == 'ДОБАВИ УКРАСА':
