@@ -180,11 +180,12 @@ class Tbllayer(db.Model):
     #
     #fragments = db.relationship('Tblfragment', backref='layers')
 
-    # TODO: fix replationships
+    # TODO: fix relationships
     #tblfragments = relationship('Tblfragment', back_populates='tbllayers')
     #tbllayerincludes = relationship('Tbllayerinclude', back_populates='tbllayers')
     #tblornaments = relationship('Tblornament', back_populates='tbllayers')
     #tblpoks = relationship('Tblpok', back_populates='tbllayers')
+
 
     def __init__(self, site, sector, square, context, layer, stratum, level,
                  structure, includes, color1, color2, recordenteredby,

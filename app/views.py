@@ -68,7 +68,7 @@ def layers_add():
             try:
                 db.session.commit()
                 layer_id = (Tbllayer.query.filter_by(recordenteredby=name).order_by(
-                    Tbllayer.layerid.desc()).first()).__dict__['layerid']
+                    Tbllayer.recordenteredon.desc()).first()).__dict__['layerid']
 
                 if request.form.to_dict()['action'] == 'ДОБАВИ ПЛАСТ':
                     # #flash(f'Пластът е добавен успешно! Нов пласт номер: {layer_id}')
