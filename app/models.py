@@ -6,6 +6,7 @@ from sqlalchemy import Boolean, CHAR, Column, Enum, ForeignKey, Integer, LargeBi
 from sqlalchemy.orm import relationship
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.schema import Sequence
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
