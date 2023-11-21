@@ -241,7 +241,10 @@ class Tbllayer(db.Model):
 class Tblfragment(db.Model):
     __tablename__ = 'tblfragments'
 
-    fragmentid = Column(Integer, primary_key=True, server_default=text("nextval('tblfragments_fragmentid_seq'::regclass)"))
+    fragmentid = Column(Integer,
+                        Sequence('tblfragments_fragmentid_seq', start=19303, increment=1),
+                        primary_key=True,
+                        server_default=text("nextval('tblfragments_fragmentid_seq'::regclass)"))
     locationid = Column(Integer, ForeignKey('tbllayers.layerid'))
     fragmenttype = Column(db.Enum('1', '2', '', name='fragmenttype_type'))
 
